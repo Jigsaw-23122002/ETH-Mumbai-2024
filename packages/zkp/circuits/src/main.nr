@@ -6,27 +6,25 @@ fn main(
     signer_pub_x_key: [u8; 32],
     signer_pub_y_key: [u8; 32],
     signature: [u8; 64],
-    squad_player_ids: [u8; 11],
+    squad_player_ids_byte_array: [[u8; 32]; 11],
     squad_points: [u8; 11] ,
-    squad_points_byte_array:[[u8; 32]; 16],
     player_points_merkle_paths: [[[u8; 32]; MERKLE_DEPTH]; 11],
-    player_points_root: pub [u8; 32],
+    final_hash: pub [u8; 32],
     squad_hash: pub [u8; 32],
-    total_points: pub u8
+    total_points: pub u8,
+    address_byte_array: [u8; 20],
+    time_stamp_byte_array: [u8; 32]
 ) {
-    // verify ECDSA signature
     let valid_signature = std::ecdsa_secp256k1::verify_signature(signer_pub_x_key, signer_pub_y_key, signature, squad_hash);
     assert(valid_signature);
-    // verify the merkle path of the point to confirm that is actually the points of the player
-    for i in squad_player_ids {
-        let computed_root= compute_merkle_root(
-            squad_points_byte_array[i-1], // leaf
-            squad_player_ids[i-1]-1, // index
-            player_points_merkle_paths[i-1] // merkle proof
-        );
+
+    for i in 0..11 {
+        let computed_root: [u8; 32] = compute_merkle_root(squad_player_ids_byte_array[i], i, player_points_merkle_paths[i]);
+        let generated_hash: [u8; 32] = std::hash::keccak256(concatenate_address_root_timestamp(address_byte_array, computed_root, time_stamp_byte_array), 84);
+        // println(generated_hash);
+        // assert(computed_root==merkle_root);
     }
 
-    // sum all points and return it back to the contract
     let mut calculated_total_points: u8 = 0;
     for point in squad_points {
         calculated_total_points+=point as u8;
@@ -70,6 +68,18 @@ fn concatenate_leafs(leaf1: [u8; 32], leaf2: [u8; 32]) -> [u8; 64] {
     for i in 0..32 {
         arr[i] = leaf1[i];
         arr[i + 32] = leaf2[i];
+    }
+    arr
+}
+
+fn concatenate_address_root_timestamp(address: [u8; 20], root: [u8; 32], timestamp: [u8; 32]) -> [u8; 84] {
+    let mut arr: [u8; 84] = [0; 84];
+    for i in 0..20 {
+        arr[i]=address[i];
+    }
+    for i in 0..32 {
+        arr[i + 20] = root[i];
+        arr[i + 20 + 32] = timestamp[i];
     }
     arr
 }
