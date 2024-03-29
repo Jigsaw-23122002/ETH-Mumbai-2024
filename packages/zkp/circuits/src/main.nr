@@ -19,10 +19,17 @@ fn main(
     assert(valid_signature);
 
     for i in 0..11 {
-        let computed_root: [u8; 32] = compute_merkle_root(squad_player_ids_byte_array[i], i, player_points_merkle_paths[i]);
-        let generated_hash: [u8; 32] = std::hash::keccak256(concatenate_address_root_timestamp(address_byte_array, computed_root, time_stamp_byte_array), 84);
+        let computed_root: [u8; 32] = compute_merkle_root(
+            squad_player_ids_byte_array[i],
+            i,
+            player_points_merkle_paths[i]
+        );
+        let generated_hash: [u8; 32] = std::hash::keccak256(
+            concatenate_address_root_timestamp(address_byte_array, computed_root, time_stamp_byte_array),
+            84
+        );
         // println(generated_hash);
-        // assert(computed_root==merkle_root);
+        assert(generated_hash == final_hash);
     }
 
     let mut calculated_total_points: u8 = 0;
@@ -51,7 +58,7 @@ fn u8_to_u160(array: [u8]) -> Field {
 
 fn compute_merkle_root(leaf: [u8; 32], leaf_index: u8, proof: [[u8; 32]; MERKLE_DEPTH]) -> [u8; 32] {
     let mut computed_hash: [u8; 32] = leaf;
-    let mut idx=leaf_index;
+    let mut idx= leaf_index;
     for i in 0..MERKLE_DEPTH {
         if idx % 2 == 0 {
             computed_hash = std::hash::keccak256(concatenate_leafs(computed_hash, proof[i]), 64);
