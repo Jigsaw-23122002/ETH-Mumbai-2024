@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   11155111: {
     Protocol: {
-      address: "0x21b873E8e7ceCb3925aF520800e0ad5Ed84ec423",
+      address: "0x1C45E0baf023BF08d77d6931fBcbe34248192562",
       abi: [
         {
           inputs: [],
@@ -234,7 +234,7 @@ const deployedContracts = {
           ],
           name: "submitOracle",
           outputs: [],
-          stateMutability: "payable",
+          stateMutability: "nonpayable",
           type: "function",
         },
         {

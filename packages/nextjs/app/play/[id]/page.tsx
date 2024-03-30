@@ -6,6 +6,7 @@ import Image from "next/image";
 import { NextPage } from "next";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import { parseEther } from "viem";
 import {
   ArrowRightCircleIcon,
   BanknotesIcon,
@@ -17,6 +18,7 @@ import Player from "~~/components/Player";
 import { Spinner } from "~~/components/Spinner";
 import { EtherInput } from "~~/components/scaffold-eth";
 import players from "~~/data/match_players.json";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import "~~/styles/test1.css";
 
 const AnonAadhaarProvider = dynamic(() => import("@anon-aadhaar/react").then(module => module.AnonAadhaarProvider), {
@@ -43,6 +45,24 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
   const [betAmount, setBetAmount] = useState("0");
 
   const [anonAadhaarStatus, setAnonAadhaarStatus] = useState(false);
+
+  const { writeAsync: writeAsync1, isLoading: isLoading1 } = useScaffoldContractWrite({
+    contractName: "Protocol",
+    functionName: "submitOracle",
+    blockConfirmations: 1,
+    onBlockConfirmation: txnReceipt => {
+      console.log("Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
+
+  const { writeAsync: writeAsync2, isLoading: isLoading2 } = useScaffoldContractWrite({
+    contractName: "Protocol",
+    functionName: "submitSquad",
+    blockConfirmations: 1,
+    onBlockConfirmation: txnReceipt => {
+      console.log("Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
 
   useEffect(() => {
     const localStatus = localStorage.getItem("anonAadhaar");
@@ -74,7 +94,12 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
     setStep(3);
   };
 
-  const registerAndBet = () => {
+  const registerAndBet = async () => {
+    const api_url = `https://puce-smoggy-clam.cyclic.app/scores/${params.id.split("M")[1]}/${savedPlayers
+      .map(savedPlayer => savedPlayer.player_id)
+      .join("P")}`;
+    await writeAsync1({ args: [api_url] });
+    await writeAsync2({ args: [], value: parseEther(betAmount) });
     localStorage.setItem("step_" + params.id, 4);
     setStep(4);
   };

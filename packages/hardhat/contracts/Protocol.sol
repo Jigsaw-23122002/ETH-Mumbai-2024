@@ -12,7 +12,7 @@ contract Protocol is ChainlinkClient {
 
 	constructor() {
 		// setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);
-		// _setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD);
+		_setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD);
 
 		_setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);
 
@@ -51,7 +51,7 @@ contract Protocol is ChainlinkClient {
 	event test(bytes32 indexed requestId, int256 _total);
 
 	//functions
-	function submitOracle(string memory api) public payable {
+	function submitOracle(string memory api) public {
 		Chainlink.Request memory req = _buildChainlinkRequest(
 			jobId,
 			address(this),
