@@ -45,9 +45,11 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
   const [anonAadhaarStatus, setAnonAadhaarStatus] = useState(false);
 
   useEffect(() => {
-    const status = localStorage.getItem("anonAadhaar");
-    if (status) {
-      setAnonAadhaarStatus(true);
+    const localStatus = localStorage.getItem("anonAadhaar");
+    if (localStatus) {
+      if (JSON.parse(localStatus).status === "logged-in") {
+        setAnonAadhaarStatus(true);
+      }
     }
 
     const match = localStorage.getItem(params.id);
