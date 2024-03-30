@@ -36,7 +36,7 @@ contract Protocol is ChainlinkClient {
 	}
 
 	// match id to winner
-	mapping(string => WinnerData) matchWinnerData;
+	public mapping(string => WinnerData) matchWinnerData;
 	mapping(string => MatchUserSquad) matchUserData;
 
 	//events
