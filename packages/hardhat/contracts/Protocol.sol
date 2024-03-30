@@ -36,7 +36,7 @@ contract Protocol is ChainlinkClient {
 	}
 
 	// match id to winner
-	public mapping(string => WinnerData) matchWinnerData;
+	mapping(string => WinnerData) public matchWinnerData;
 	mapping(string => MatchUserSquad) matchUserData;
 
 	//events
@@ -66,11 +66,10 @@ contract Protocol is ChainlinkClient {
 	function submitSquad(
 		string memory match_id,
 		string memory uuid,
-		address user_address,
 		bytes32 squadHash
 	) public payable {
 		matchUserData[uuid] = MatchUserSquad(
-			user_address,
+			msg.sender,
 			total_scores_players,
 			squadHash
 		);
@@ -78,14 +77,14 @@ contract Protocol is ChainlinkClient {
 			matchWinnerData[match_id].matchWinnerPoints < total_scores_players
 		) {
 			matchWinnerData[match_id].matchWinnerPoints = total_scores_players;
-			matchWinnerData[match_id].matchWinner = user_address;
+			matchWinnerData[match_id].matchWinner = msg.sender;
 			matchWinnerData[match_id].squadHash = squadHash;
 		}
 		matchWinnerData[match_id].matchPrizePool += msg.value;
 		emit SquadRegistered(
 			match_id,
 			uuid,
-			user_address,
+			msg.sender,
 			total_scores_players,
 			squadHash
 		);
@@ -106,23 +105,28 @@ contract Protocol is ChainlinkClient {
 	}
 
 	function isWinner(string memory match_id) public view returns (bool) {
-		return matchWinnerData[match_id].matchWinner == msg.sender;
+		if (
+			matchWinnerData[match_id].matchWinner ==
+			msg.sender
+		) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	function claimRewards(
-		string memory match_id,
-		bytes32 squadHash,
-		bytes32[] memory merklePath
-	) public {
+	function claimRewards(string memory match_id, bytes32 squadHash) public {
 		//verification using squadHash, merklePath
 
 		// if verified
 		if (
-			matchWinnerData[match_id].matchWinner == msg.sender &&
+			address(matchWinnerData[match_id].matchWinner) ==
+			address(msg.sender) &&
 			matchWinnerData[match_id].squadHash == squadHash
 		) {
 			uint256 amount = matchWinnerData[match_id].matchPrizePool;
 			payable(msg.sender).transfer(amount);
+
 			emit rewardsClaimed(match_id, amount);
 		}
 	}

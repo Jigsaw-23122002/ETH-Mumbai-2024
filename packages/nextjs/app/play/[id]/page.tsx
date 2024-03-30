@@ -145,7 +145,7 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
     // console.log(finalHash);
 
     await writeAsync2({
-      args: [params.id.split("M")[1], params.id + address?.toString(), address, finalHash],
+      args: [params.id.split("M")[1], params.id + address?.toString(), finalHash],
       value: parseEther(betAmount),
     });
     localStorage.setItem("step_" + params.id, 4);

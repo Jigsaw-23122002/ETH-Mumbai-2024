@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   11155111: {
     Protocol: {
-      address: "0x1C45E0baf023BF08d77d6931fBcbe34248192562",
+      address: "0x4aBfD8DA327FDb5CE08D7AAbD30709236B3988fA",
       abi: [
         {
           inputs: [],
@@ -140,11 +140,6 @@ const deployedContracts = {
               name: "squadHash",
               type: "bytes32",
             },
-            {
-              internalType: "bytes32[]",
-              name: "merklePath",
-              type: "bytes32[]",
-            },
           ],
           name: "claimRewards",
           outputs: [],
@@ -228,6 +223,40 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          name: "matchWinnerData",
+          outputs: [
+            {
+              internalType: "int256",
+              name: "matchWinnerPoints",
+              type: "int256",
+            },
+            {
+              internalType: "address",
+              name: "matchWinner",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "matchPrizePool",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes32",
+              name: "squadHash",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
               name: "api",
               type: "string",
             },
@@ -248,11 +277,6 @@ const deployedContracts = {
               internalType: "string",
               name: "uuid",
               type: "string",
-            },
-            {
-              internalType: "address",
-              name: "user_address",
-              type: "address",
             },
             {
               internalType: "bytes32",
