@@ -4,7 +4,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BoltIcon, BugAntIcon, HomeIcon, TrophyIcon, UsersIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -18,6 +18,22 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Home",
     href: "/",
+    icon: <HomeIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Players",
+    href: "/players",
+    icon: <UsersIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Matches",
+    href: "/matches",
+    icon: <TrophyIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Play",
+    href: "/play",
+    icon: <BoltIcon className="h-4 w-4" />,
   },
   {
     label: "Debug Contracts",
@@ -32,7 +48,8 @@ export const HeaderMenuLinks = () => {
   return (
     <>
       {menuLinks.map(({ label, href, icon }) => {
-        const isActive = pathname === href;
+        const sp = pathname.split("/");
+        const isActive = sp.length <= 2 ? pathname == href : sp[1] == href.slice(1);
         return (
           <li key={href}>
             <Link
@@ -93,8 +110,8 @@ export const Header = () => {
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-ETH</span>
-            <span className="text-xs">Ethereum dev stack</span>
+            <span className="font-bold leading-tight">FairPlayXI</span>
+            <span className="text-xs">Fantasy Cricket</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">

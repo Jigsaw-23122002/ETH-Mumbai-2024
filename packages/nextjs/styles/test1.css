@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "PPNeueMachina";
+  src: url("/fonts/PPNeueMachina-InktrapSemibold.woff2") format("woff2"),
+    url("/fonts/PPNeueMachina-InktrapSemibold.woff") format("woff"),
+    url("/fonts/PPNeueMachina-InktrapSemibold.ttf") format("truetype"),
+    url("/fonts/PPNeueMachina-InktrapSemibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth !important;
+}
+
+:root,
+[data-theme] {
+  background: hsl(var(--b2));
+}
+
+body {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-neue-machina;
+  @apply font-semibold;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+a:hover {
+  @apply opacity-80;
+  @apply transition-opacity;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+.btn {
+  @apply shadow-md normal-case;
+}
+
+.btn.btn-ghost {
+  @apply shadow-none;
+}
+
+tbody tr:first-child td:first-child {
+  border-top-left-radius: 1.5rem;
+}
+
+tbody tr:first-child td:last-child {
+  border-top-right-radius: 1.5rem;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 1.5rem;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 1.5rem;
+}
+.hero-top-gradient {
+  background: linear-gradient(180deg, #c3dbff 0%, rgba(217, 235, 229, 0.51) 66.15%, rgba(239, 251, 202, 0) 100%);
+}
+
+.hero-bottom-gradient {
+  background: linear-gradient(0deg, rgba(24, 34, 50, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+  background-blend-mode: multiply;
+}

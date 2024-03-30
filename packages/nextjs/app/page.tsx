@@ -1,68 +1,66 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import type { NextPage } from "next";
-import { useAccount } from "wagmi";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Address } from "~~/components/scaffold-eth";
+import "~~/styles/test1.css";
 
 const Home: NextPage = () => {
-  const { address: connectedAddress } = useAccount();
-
   return (
     <>
-      <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5">
-          <h1 className="text-center">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
-          </h1>
-          <div className="flex justify-center items-center space-x-2">
-            <p className="my-2 font-medium">Connected Address:</p>
-            <Address address={connectedAddress} />
+      {/* Hero section with header */}
+      <div className="relative h-[70vh] md:min-h-screen flex flex-col">
+        <div className="absolute h-1/4 w-full top-0 left-0 hero-top-gradient"></div>
+        <div className="bg-[url(/assets/hero.png)] bg-[#EFFBCA] bg-cover md:bg-center bg-[position:40%_0] flex-grow">
+          <div className="flex justify-center">
+            <h1 className="text-center z-10 text-xl max-w-xs lg:text-xl lg:mt-8 lg:max-w-4xl px-3 text-black">
+              A Privacy-Focused, Sybil-Resistant, Decentralized Fantasy Cricket Platform
+            </h1>
           </div>
-          <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/nextjs/app/page.tsx
-            </code>
-          </p>
-          <p className="text-center text-lg">
-            Edit your smart contract{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              YourContract.sol
-            </code>{" "}
-            in{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/hardhat/contracts
-            </code>
-          </p>
         </div>
+        <div className="absolute h-1/4 w-full bottom-0 left-0 hero-bottom-gradient flex items-end justify-center">
+          <Link href="#start-using-fairplayxi" className="hidden lg:block">
+            <Image
+              src="/assets/down-arrow.svg"
+              alt="diamon icon"
+              width={25}
+              height={25}
+              className="mb-3 cursor-pointer animate-bounce-interval"
+            />
+          </Link>
+        </div>
+      </div>
 
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contracts
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
+      {/* Start Using FairPlayXI */}
+      <div className="bg-base-100" id="start-using-fairplayxi">
+        <div className="container max-w-[90%] lg:max-w-6xl m-auto py-12 lg:py-20 lg:px-12 flex flex-col lg:flex-row items-center gap-5 lg:gap-0">
+          <div className="space-y-6">
+            <h2 className="text-3xl lg:text-5xl lg:w-3/4 text-center lg:text-left">
+              Start Using FairPlayXI For Fantasy Cricket
+            </h2>
+            <ul className="list-disc list-inside flex flex-col space-y-3 m-auto lg:mx-0 max-w-[300px] lg:max-w-none">
+              <li>
+                <span className="font-bold">Fully Private Teams</span> - No more teams leaking before the match
+              </li>
+              <li>
+                <span className="font-bold">Sybil-Resistant</span> - No bots competing with unfair teams
+              </li>
+              <li>
+                <span className="font-bold">Fully Decentralized</span> - No concerns about transparency regarding
+                scoring
+              </li>
+            </ul>
+            <div className="text-center lg:text-left">
+              <Link id="play-now" href="/matches" className="btn btn-outline lg:self-start px-8 hover:opacity-100">
+                Play Now!
+              </Link>
             </div>
           </div>
+          <div className="max-w-[300px] lg:max-w-none">
+            <Image src="/logo.svg" alt="hero" width={500} height={500} />
+          </div>
         </div>
+        <div className="bg-[url(/assets/sre-path.png)] bg-repeat-x h-32 relative bg-[35%_top]"></div>
       </div>
     </>
   );
