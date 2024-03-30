@@ -1,29 +1,23 @@
 //SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
+pragma solidity ^0.8.7;
 
-// Useful for debugging. Remove when deploying to a live network.
-// player ids []
-// match id eg "12" ie string of a num
+import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 
-//tot points , individual_points[]
-// import "hardhat/console.sol";
-// import { Chainlink, ChainlinkClient } from "https://github.com/smartcontractkit/chainlink/blob/master/contracts/src/v0.8/ChainlinkClient.sol";
-// import { ConfirmedOwner } from "https://github.com/smartcontractkit/chainlink/blob/master/contracts/src/v0.8/shared/access/ConfirmedOwner.sol";
-// import { LinkTokenInterface } from "https://github.com/smartcontractkit/chainlink/blob/master/contracts/src/v0.8/shared/interfaces/LinkTokenInterface.sol";
-
-import { Chainlink, ChainlinkClient } from "@chainlink/contracts@1.0.0/src/v0.8/ChainlinkClient.sol";
-import { ConfirmedOwner } from "@chainlink/contracts@1.0.0/src/v0.8/shared/access/ConfirmedOwner.sol";
-import { LinkTokenInterface } from "@chainlink/contracts@1.0.0/src/v0.8/shared/interfaces/LinkTokenInterface.sol";
-
-contract Protocol is ChainlinkClient, ConfirmedOwner {
+contract Protocol is ChainlinkClient {
 	using Chainlink for Chainlink.Request;
 	bytes32 private jobId;
 	uint256 private fee;
 	int256 public total_scores_players;
+	address private immutable oracle;
 
-	constructor() ConfirmedOwner(msg.sender) {
+	constructor() {
+		// setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);
+		// _setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD);
+
 		_setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);
-		_setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD);
+
+		oracle = 0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD;
+
 		jobId = "fcf4140d696d44b687012232948bdd5d";
 		fee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)
 	}

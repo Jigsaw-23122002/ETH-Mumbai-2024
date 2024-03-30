@@ -48,7 +48,6 @@
   },
   "dependencies": {
     "@chainlink/contracts": "^1.0.0",
-    "@chainlink/hardhat-chainlink": "^0.0.4",
     "@openzeppelin/contracts": "^4.8.1",
     "@typechain/ethers-v6": "^0.5.1",
     "dotenv": "^16.0.3",

@@ -1,0 +1,531 @@
+{
+  "address": "0x21b873E8e7ceCb3925aF520800e0ad5Ed84ec423",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ChainlinkCancelled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ChainlinkFulfilled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ChainlinkRequested",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "match_id",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "uuid",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "user_address",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "total_points",
+          "type": "int256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "squadHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "SquadRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "match_id",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "rewardsClaimed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "requestId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "_total",
+          "type": "int256"
+        }
+      ],
+      "name": "test",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "match_id",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "squadHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "merklePath",
+          "type": "bytes32[]"
+        }
+      ],
+      "name": "claimRewards",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_requestId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "int256",
+          "name": "_total_scores_players",
+          "type": "int256"
+        }
+      ],
+      "name": "fulfill",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "uuid",
+          "type": "string"
+        }
+      ],
+      "name": "getMatchUserSquad",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "user_address",
+              "type": "address"
+            },
+            {
+              "internalType": "int256",
+              "name": "total_points",
+              "type": "int256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "squadHash",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct Protocol.MatchUserSquad",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "match_id",
+          "type": "string"
+        }
+      ],
+      "name": "isWinner",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "api",
+          "type": "string"
+        }
+      ],
+      "name": "submitOracle",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "match_id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "uuid",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "user_address",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "squadHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "submitSquad",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "total_scores_players",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x7e2c17c795bd7e5b6b892ef25d7ef211465498b80f89364256e4a4eea5f185c3",
+  "receipt": {
+    "to": null,
+    "from": "0x5E5256795E01200889855BAA261D0010ef344c3D",
+    "contractAddress": "0x21b873E8e7ceCb3925aF520800e0ad5Ed84ec423",
+    "transactionIndex": 54,
+    "gasUsed": "1250982",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x5212cc497512aca6b4962ce58d137da51be25dd2426b6ff5ebd9be5b074ff394",
+    "transactionHash": "0x7e2c17c795bd7e5b6b892ef25d7ef211465498b80f89364256e4a4eea5f185c3",
+    "logs": [],
+    "blockNumber": 5587907,
+    "cumulativeGasUsed": "9206402",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "f2a713bdf6bc47a35bf56eb9c6665016",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"id\",\"type\":\"bytes32\"}],\"name\":\"ChainlinkCancelled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"id\",\"type\":\"bytes32\"}],\"name\":\"ChainlinkFulfilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"id\",\"type\":\"bytes32\"}],\"name\":\"ChainlinkRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"match_id\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"user_address\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"total_points\",\"type\":\"int256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"squadHash\",\"type\":\"bytes32\"}],\"name\":\"SquadRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"match_id\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"rewardsClaimed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"_total\",\"type\":\"int256\"}],\"name\":\"test\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"match_id\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"squadHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"merklePath\",\"type\":\"bytes32[]\"}],\"name\":\"claimRewards\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"int256\",\"name\":\"_total_scores_players\",\"type\":\"int256\"}],\"name\":\"fulfill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"}],\"name\":\"getMatchUserSquad\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"user_address\",\"type\":\"address\"},{\"internalType\":\"int256\",\"name\":\"total_points\",\"type\":\"int256\"},{\"internalType\":\"bytes32\",\"name\":\"squadHash\",\"type\":\"bytes32\"}],\"internalType\":\"struct Protocol.MatchUserSquad\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"match_id\",\"type\":\"string\"}],\"name\":\"isWinner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"api\",\"type\":\"string\"}],\"name\":\"submitOracle\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"match_id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"uuid\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"user_address\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"squadHash\",\"type\":\"bytes32\"}],\"name\":\"submitSquad\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"total_scores_players\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Protocol.sol\":\"Protocol\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@chainlink/contracts/src/v0.8/Chainlink.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {CBORChainlink} from \\\"./vendor/CBORChainlink.sol\\\";\\nimport {BufferChainlink} from \\\"./vendor/BufferChainlink.sol\\\";\\n\\n/**\\n * @title Library for common Chainlink functions\\n * @dev Uses imported CBOR library for encoding to buffer\\n */\\nlibrary Chainlink {\\n  // solhint-disable-next-line chainlink-solidity/all-caps-constant-storage-variables\\n  uint256 internal constant defaultBufferSize = 256;\\n\\n  using CBORChainlink for BufferChainlink.buffer;\\n\\n  struct Request {\\n    bytes32 id;\\n    address callbackAddress;\\n    bytes4 callbackFunctionId;\\n    uint256 nonce;\\n    BufferChainlink.buffer buf;\\n  }\\n\\n  /**\\n   * @notice Initializes a Chainlink request\\n   * @dev Sets the ID, callback address, and callback function signature on the request\\n   * @param self The uninitialized request\\n   * @param jobId The Job Specification ID\\n   * @param callbackAddr The callback address\\n   * @param callbackFunc The callback function signature\\n   * @return The initialized request\\n   */\\n  function _initialize(\\n    Request memory self,\\n    bytes32 jobId,\\n    address callbackAddr,\\n    bytes4 callbackFunc\\n  ) internal pure returns (Chainlink.Request memory) {\\n    BufferChainlink.init(self.buf, defaultBufferSize);\\n    self.id = jobId;\\n    self.callbackAddress = callbackAddr;\\n    self.callbackFunctionId = callbackFunc;\\n    return self;\\n  }\\n\\n  /**\\n   * @notice Sets the data for the buffer without encoding CBOR on-chain\\n   * @dev CBOR can be closed with curly-brackets {} or they can be left off\\n   * @param self The initialized request\\n   * @param data The CBOR data\\n   */\\n  function _setBuffer(Request memory self, bytes memory data) internal pure {\\n    BufferChainlink.init(self.buf, data.length);\\n    BufferChainlink.append(self.buf, data);\\n  }\\n\\n  /**\\n   * @notice Adds a string value to the request with a given key name\\n   * @param self The initialized request\\n   * @param key The name of the key\\n   * @param value The string value to add\\n   */\\n  function _add(Request memory self, string memory key, string memory value) internal pure {\\n    self.buf.encodeString(key);\\n    self.buf.encodeString(value);\\n  }\\n\\n  /**\\n   * @notice Adds a bytes value to the request with a given key name\\n   * @param self The initialized request\\n   * @param key The name of the key\\n   * @param value The bytes value to add\\n   */\\n  function _addBytes(Request memory self, string memory key, bytes memory value) internal pure {\\n    self.buf.encodeString(key);\\n    self.buf.encodeBytes(value);\\n  }\\n\\n  /**\\n   * @notice Adds a int256 value to the request with a given key name\\n   * @param self The initialized request\\n   * @param key The name of the key\\n   * @param value The int256 value to add\\n   */\\n  function _addInt(Request memory self, string memory key, int256 value) internal pure {\\n    self.buf.encodeString(key);\\n    self.buf.encodeInt(value);\\n  }\\n\\n  /**\\n   * @notice Adds a uint256 value to the request with a given key name\\n   * @param self The initialized request\\n   * @param key The name of the key\\n   * @param value The uint256 value to add\\n   */\\n  function _addUint(Request memory self, string memory key, uint256 value) internal pure {\\n    self.buf.encodeString(key);\\n    self.buf.encodeUInt(value);\\n  }\\n\\n  /**\\n   * @notice Adds an array of strings to the request with a given key name\\n   * @param self The initialized request\\n   * @param key The name of the key\\n   * @param values The array of string values to add\\n   */\\n  function _addStringArray(Request memory self, string memory key, string[] memory values) internal pure {\\n    self.buf.encodeString(key);\\n    self.buf.startArray();\\n    for (uint256 i = 0; i < values.length; i++) {\\n      self.buf.encodeString(values[i]);\\n    }\\n    self.buf.endSequence();\\n  }\\n}\\n\",\"keccak256\":\"0x2df682bf5004b304fa9a578c0a4df29974aec44bd18ded16d04ea8f89b9fac88\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/ChainlinkClient.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {Chainlink} from \\\"./Chainlink.sol\\\";\\nimport {ENSInterface} from \\\"./interfaces/ENSInterface.sol\\\";\\nimport {LinkTokenInterface} from \\\"./shared/interfaces/LinkTokenInterface.sol\\\";\\nimport {ChainlinkRequestInterface} from \\\"./interfaces/ChainlinkRequestInterface.sol\\\";\\nimport {OperatorInterface} from \\\"./interfaces/OperatorInterface.sol\\\";\\nimport {PointerInterface} from \\\"./interfaces/PointerInterface.sol\\\";\\nimport {ENSResolver as ENSResolver_Chainlink} from \\\"./vendor/ENSResolver.sol\\\";\\n\\n/**\\n * @title The ChainlinkClient contract\\n * @notice Contract writers can inherit this contract in order to create requests for the\\n * Chainlink network\\n */\\n// solhint-disable custom-errors\\nabstract contract ChainlinkClient {\\n  using Chainlink for Chainlink.Request;\\n\\n  uint256 internal constant LINK_DIVISIBILITY = 10 ** 18;\\n  uint256 private constant AMOUNT_OVERRIDE = 0;\\n  address private constant SENDER_OVERRIDE = address(0);\\n  uint256 private constant ORACLE_ARGS_VERSION = 1;\\n  uint256 private constant OPERATOR_ARGS_VERSION = 2;\\n  bytes32 private constant ENS_TOKEN_SUBNAME = keccak256(\\\"link\\\");\\n  bytes32 private constant ENS_ORACLE_SUBNAME = keccak256(\\\"oracle\\\");\\n  address private constant LINK_TOKEN_POINTER = 0xC89bD4E1632D3A43CB03AAAd5262cbe4038Bc571;\\n\\n  ENSInterface private s_ens;\\n  bytes32 private s_ensNode;\\n  LinkTokenInterface private s_link;\\n  OperatorInterface private s_oracle;\\n  uint256 private s_requestCount = 1;\\n  mapping(bytes32 => address) private s_pendingRequests;\\n\\n  event ChainlinkRequested(bytes32 indexed id);\\n  event ChainlinkFulfilled(bytes32 indexed id);\\n  event ChainlinkCancelled(bytes32 indexed id);\\n\\n  /**\\n   * @notice Creates a request that can hold additional parameters\\n   * @param specId The Job Specification ID that the request will be created for\\n   * @param callbackAddr address to operate the callback on\\n   * @param callbackFunctionSignature function signature to use for the callback\\n   * @return A Chainlink Request struct in memory\\n   */\\n  function _buildChainlinkRequest(\\n    bytes32 specId,\\n    address callbackAddr,\\n    bytes4 callbackFunctionSignature\\n  ) internal pure returns (Chainlink.Request memory) {\\n    Chainlink.Request memory req;\\n    return req._initialize(specId, callbackAddr, callbackFunctionSignature);\\n  }\\n\\n  /**\\n   * @notice Creates a request that can hold additional parameters\\n   * @param specId The Job Specification ID that the request will be created for\\n   * @param callbackFunctionSignature function signature to use for the callback\\n   * @return A Chainlink Request struct in memory\\n   */\\n  function _buildOperatorRequest(\\n    bytes32 specId,\\n    bytes4 callbackFunctionSignature\\n  ) internal view returns (Chainlink.Request memory) {\\n    Chainlink.Request memory req;\\n    return req._initialize(specId, address(this), callbackFunctionSignature);\\n  }\\n\\n  /**\\n   * @notice Creates a Chainlink request to the stored oracle address\\n   * @dev Calls `chainlinkRequestTo` with the stored oracle address\\n   * @param req The initialized Chainlink Request\\n   * @param payment The amount of LINK to send for the request\\n   * @return requestId The request ID\\n   */\\n  function _sendChainlinkRequest(Chainlink.Request memory req, uint256 payment) internal returns (bytes32) {\\n    return _sendChainlinkRequestTo(address(s_oracle), req, payment);\\n  }\\n\\n  /**\\n   * @notice Creates a Chainlink request to the specified oracle address\\n   * @dev Generates and stores a request ID, increments the local nonce, and uses `transferAndCall` to\\n   * send LINK which creates a request on the target oracle contract.\\n   * Emits ChainlinkRequested event.\\n   * @param oracleAddress The address of the oracle for the request\\n   * @param req The initialized Chainlink Request\\n   * @param payment The amount of LINK to send for the request\\n   * @return requestId The request ID\\n   */\\n  function _sendChainlinkRequestTo(\\n    address oracleAddress,\\n    Chainlink.Request memory req,\\n    uint256 payment\\n  ) internal returns (bytes32 requestId) {\\n    uint256 nonce = s_requestCount;\\n    s_requestCount = nonce + 1;\\n    bytes memory encodedRequest = abi.encodeWithSelector(\\n      ChainlinkRequestInterface.oracleRequest.selector,\\n      SENDER_OVERRIDE, // Sender value - overridden by onTokenTransfer by the requesting contract's address\\n      AMOUNT_OVERRIDE, // Amount value - overridden by onTokenTransfer by the actual amount of LINK sent\\n      req.id,\\n      address(this),\\n      req.callbackFunctionId,\\n      nonce,\\n      ORACLE_ARGS_VERSION,\\n      req.buf.buf\\n    );\\n    return _rawRequest(oracleAddress, nonce, payment, encodedRequest);\\n  }\\n\\n  /**\\n   * @notice Creates a Chainlink request to the stored oracle address\\n   * @dev This function supports multi-word response\\n   * @dev Calls `sendOperatorRequestTo` with the stored oracle address\\n   * @param req The initialized Chainlink Request\\n   * @param payment The amount of LINK to send for the request\\n   * @return requestId The request ID\\n   */\\n  function _sendOperatorRequest(Chainlink.Request memory req, uint256 payment) internal returns (bytes32) {\\n    return _sendOperatorRequestTo(address(s_oracle), req, payment);\\n  }\\n\\n  /**\\n   * @notice Creates a Chainlink request to the specified oracle address\\n   * @dev This function supports multi-word response\\n   * @dev Generates and stores a request ID, increments the local nonce, and uses `transferAndCall` to\\n   * send LINK which creates a request on the target oracle contract.\\n   * Emits ChainlinkRequested event.\\n   * @param oracleAddress The address of the oracle for the request\\n   * @param req The initialized Chainlink Request\\n   * @param payment The amount of LINK to send for the request\\n   * @return requestId The request ID\\n   */\\n  function _sendOperatorRequestTo(\\n    address oracleAddress,\\n    Chainlink.Request memory req,\\n    uint256 payment\\n  ) internal returns (bytes32 requestId) {\\n    uint256 nonce = s_requestCount;\\n    s_requestCount = nonce + 1;\\n    bytes memory encodedRequest = abi.encodeWithSelector(\\n      OperatorInterface.operatorRequest.selector,\\n      SENDER_OVERRIDE, // Sender value - overridden by onTokenTransfer by the requesting contract's address\\n      AMOUNT_OVERRIDE, // Amount value - overridden by onTokenTransfer by the actual amount of LINK sent\\n      req.id,\\n      req.callbackFunctionId,\\n      nonce,\\n      OPERATOR_ARGS_VERSION,\\n      req.buf.buf\\n    );\\n    return _rawRequest(oracleAddress, nonce, payment, encodedRequest);\\n  }\\n\\n  /**\\n   * @notice Make a request to an oracle\\n   * @param oracleAddress The address of the oracle for the request\\n   * @param nonce used to generate the request ID\\n   * @param payment The amount of LINK to send for the request\\n   * @param encodedRequest data encoded for request type specific format\\n   * @return requestId The request ID\\n   */\\n  function _rawRequest(\\n    address oracleAddress,\\n    uint256 nonce,\\n    uint256 payment,\\n    bytes memory encodedRequest\\n  ) private returns (bytes32 requestId) {\\n    requestId = keccak256(abi.encodePacked(this, nonce));\\n    s_pendingRequests[requestId] = oracleAddress;\\n    emit ChainlinkRequested(requestId);\\n    require(s_link.transferAndCall(oracleAddress, payment, encodedRequest), \\\"unable to transferAndCall to oracle\\\");\\n    return requestId;\\n  }\\n\\n  /**\\n   * @notice Allows a request to be cancelled if it has not been fulfilled\\n   * @dev Requires keeping track of the expiration value emitted from the oracle contract.\\n   * Deletes the request from the `pendingRequests` mapping.\\n   * Emits ChainlinkCancelled event.\\n   * @param requestId The request ID\\n   * @param payment The amount of LINK sent for the request\\n   * @param callbackFunc The callback function specified for the request\\n   * @param expiration The time of the expiration for the request\\n   */\\n  function _cancelChainlinkRequest(\\n    bytes32 requestId,\\n    uint256 payment,\\n    bytes4 callbackFunc,\\n    uint256 expiration\\n  ) internal {\\n    OperatorInterface requested = OperatorInterface(s_pendingRequests[requestId]);\\n    delete s_pendingRequests[requestId];\\n    emit ChainlinkCancelled(requestId);\\n    requested.cancelOracleRequest(requestId, payment, callbackFunc, expiration);\\n  }\\n\\n  /**\\n   * @notice the next request count to be used in generating a nonce\\n   * @dev starts at 1 in order to ensure consistent gas cost\\n   * @return returns the next request count to be used in a nonce\\n   */\\n  function _getNextRequestCount() internal view returns (uint256) {\\n    return s_requestCount;\\n  }\\n\\n  /**\\n   * @notice Sets the stored oracle address\\n   * @param oracleAddress The address of the oracle contract\\n   */\\n  function _setChainlinkOracle(address oracleAddress) internal {\\n    s_oracle = OperatorInterface(oracleAddress);\\n  }\\n\\n  /**\\n   * @notice Sets the LINK token address\\n   * @param linkAddress The address of the LINK token contract\\n   */\\n  function _setChainlinkToken(address linkAddress) internal {\\n    s_link = LinkTokenInterface(linkAddress);\\n  }\\n\\n  /**\\n   * @notice Sets the Chainlink token address for the public\\n   * network as given by the Pointer contract\\n   */\\n  function _setPublicChainlinkToken() internal {\\n    _setChainlinkToken(PointerInterface(LINK_TOKEN_POINTER).getAddress());\\n  }\\n\\n  /**\\n   * @notice Retrieves the stored address of the LINK token\\n   * @return The address of the LINK token\\n   */\\n  function _chainlinkTokenAddress() internal view returns (address) {\\n    return address(s_link);\\n  }\\n\\n  /**\\n   * @notice Retrieves the stored address of the oracle contract\\n   * @return The address of the oracle contract\\n   */\\n  function _chainlinkOracleAddress() internal view returns (address) {\\n    return address(s_oracle);\\n  }\\n\\n  /**\\n   * @notice Allows for a request which was created on another contract to be fulfilled\\n   * on this contract\\n   * @param oracleAddress The address of the oracle contract that will fulfill the request\\n   * @param requestId The request ID used for the response\\n   */\\n  function _addChainlinkExternalRequest(\\n    address oracleAddress,\\n    bytes32 requestId\\n  ) internal notPendingRequest(requestId) {\\n    s_pendingRequests[requestId] = oracleAddress;\\n  }\\n\\n  /**\\n   * @notice Sets the stored oracle and LINK token contracts with the addresses resolved by ENS\\n   * @dev Accounts for subnodes having different resolvers\\n   * @param ensAddress The address of the ENS contract\\n   * @param node The ENS node hash\\n   */\\n  function _useChainlinkWithENS(address ensAddress, bytes32 node) internal {\\n    s_ens = ENSInterface(ensAddress);\\n    s_ensNode = node;\\n    bytes32 linkSubnode = keccak256(abi.encodePacked(s_ensNode, ENS_TOKEN_SUBNAME));\\n    ENSResolver_Chainlink resolver = ENSResolver_Chainlink(s_ens.resolver(linkSubnode));\\n    _setChainlinkToken(resolver.addr(linkSubnode));\\n    _updateChainlinkOracleWithENS();\\n  }\\n\\n  /**\\n   * @notice Sets the stored oracle contract with the address resolved by ENS\\n   * @dev This may be called on its own as long as `useChainlinkWithENS` has been called previously\\n   */\\n  function _updateChainlinkOracleWithENS() internal {\\n    bytes32 oracleSubnode = keccak256(abi.encodePacked(s_ensNode, ENS_ORACLE_SUBNAME));\\n    ENSResolver_Chainlink resolver = ENSResolver_Chainlink(s_ens.resolver(oracleSubnode));\\n    _setChainlinkOracle(resolver.addr(oracleSubnode));\\n  }\\n\\n  /**\\n   * @notice Ensures that the fulfillment is valid for this contract\\n   * @dev Use if the contract developer prefers methods instead of modifiers for validation\\n   * @param requestId The request ID for fulfillment\\n   */\\n  function _validateChainlinkCallback(\\n    bytes32 requestId\\n  )\\n    internal\\n    recordChainlinkFulfillment(requestId) // solhint-disable-next-line no-empty-blocks\\n  {}\\n\\n  /**\\n   * @dev Reverts if the sender is not the oracle of the request.\\n   * Emits ChainlinkFulfilled event.\\n   * @param requestId The request ID for fulfillment\\n   */\\n  modifier recordChainlinkFulfillment(bytes32 requestId) {\\n    require(msg.sender == s_pendingRequests[requestId], \\\"Source must be the oracle of the request\\\");\\n    delete s_pendingRequests[requestId];\\n    emit ChainlinkFulfilled(requestId);\\n    _;\\n  }\\n\\n  /**\\n   * @dev Reverts if the request is already pending\\n   * @param requestId The request ID for fulfillment\\n   */\\n  modifier notPendingRequest(bytes32 requestId) {\\n    require(s_pendingRequests[requestId] == address(0), \\\"Request is already pending\\\");\\n    _;\\n  }\\n}\\n\",\"keccak256\":\"0x01296bc04bc5a255f36d57a6032ad33387d418fad51e27423a25dc11cb6f06e9\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/interfaces/ChainlinkRequestInterface.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface ChainlinkRequestInterface {\\n  function oracleRequest(\\n    address sender,\\n    uint256 requestPrice,\\n    bytes32 serviceAgreementID,\\n    address callbackAddress,\\n    bytes4 callbackFunctionId,\\n    uint256 nonce,\\n    uint256 dataVersion,\\n    bytes calldata data\\n  ) external;\\n\\n  function cancelOracleRequest(\\n    bytes32 requestId,\\n    uint256 payment,\\n    bytes4 callbackFunctionId,\\n    uint256 expiration\\n  ) external;\\n}\\n\",\"keccak256\":\"0xa8adfbd0326c982c38ea3808a4da52f0a51807241787c4bd28235bbe86707c04\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/interfaces/ENSInterface.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface ENSInterface {\\n  // Logged when the owner of a node assigns a new owner to a subnode.\\n  event NewOwner(bytes32 indexed node, bytes32 indexed label, address owner);\\n\\n  // Logged when the owner of a node transfers ownership to a new account.\\n  event Transfer(bytes32 indexed node, address owner);\\n\\n  // Logged when the resolver for a node changes.\\n  event NewResolver(bytes32 indexed node, address resolver);\\n\\n  // Logged when the TTL of a node changes\\n  event NewTTL(bytes32 indexed node, uint64 ttl);\\n\\n  function setSubnodeOwner(bytes32 node, bytes32 label, address owner) external;\\n\\n  function setResolver(bytes32 node, address resolver) external;\\n\\n  function setOwner(bytes32 node, address owner) external;\\n\\n  function setTTL(bytes32 node, uint64 ttl) external;\\n\\n  function owner(bytes32 node) external view returns (address);\\n\\n  function resolver(bytes32 node) external view returns (address);\\n\\n  function ttl(bytes32 node) external view returns (uint64);\\n}\\n\",\"keccak256\":\"0xd8d9f0bfa3c4a0d4f4ab3450b623521029623b2a347ffcacc06d016eab9628d6\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/interfaces/OperatorInterface.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {OracleInterface} from \\\"./OracleInterface.sol\\\";\\nimport {ChainlinkRequestInterface} from \\\"./ChainlinkRequestInterface.sol\\\";\\n\\ninterface OperatorInterface is OracleInterface, ChainlinkRequestInterface {\\n  function operatorRequest(\\n    address sender,\\n    uint256 payment,\\n    bytes32 specId,\\n    bytes4 callbackFunctionId,\\n    uint256 nonce,\\n    uint256 dataVersion,\\n    bytes calldata data\\n  ) external;\\n\\n  function fulfillOracleRequest2(\\n    bytes32 requestId,\\n    uint256 payment,\\n    address callbackAddress,\\n    bytes4 callbackFunctionId,\\n    uint256 expiration,\\n    bytes calldata data\\n  ) external returns (bool);\\n\\n  function ownerTransferAndCall(address to, uint256 value, bytes calldata data) external returns (bool success);\\n\\n  function distributeFunds(address payable[] calldata receivers, uint256[] calldata amounts) external payable;\\n}\\n\",\"keccak256\":\"0x72b18e9c918c410f5f566fd457ff63e3cf441b29cecb3aeacc9e39f533c516dc\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/interfaces/OracleInterface.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface OracleInterface {\\n  function fulfillOracleRequest(\\n    bytes32 requestId,\\n    uint256 payment,\\n    address callbackAddress,\\n    bytes4 callbackFunctionId,\\n    uint256 expiration,\\n    bytes32 data\\n  ) external returns (bool);\\n\\n  function withdraw(address recipient, uint256 amount) external;\\n\\n  function withdrawable() external view returns (uint256);\\n}\\n\",\"keccak256\":\"0x065967325ecfc2902cfb0e20bdfd4574e066fb05105eccf94a5008716776c1c7\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/interfaces/PointerInterface.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface PointerInterface {\\n  function getAddress() external view returns (address);\\n}\\n\",\"keccak256\":\"0x42e5d62984f9d57bab7e32b2c6e3af86f4feb232ea2af6c822032fae88203bd7\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/shared/interfaces/LinkTokenInterface.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface LinkTokenInterface {\\n  function allowance(address owner, address spender) external view returns (uint256 remaining);\\n\\n  function approve(address spender, uint256 value) external returns (bool success);\\n\\n  function balanceOf(address owner) external view returns (uint256 balance);\\n\\n  function decimals() external view returns (uint8 decimalPlaces);\\n\\n  function decreaseApproval(address spender, uint256 addedValue) external returns (bool success);\\n\\n  function increaseApproval(address spender, uint256 subtractedValue) external;\\n\\n  function name() external view returns (string memory tokenName);\\n\\n  function symbol() external view returns (string memory tokenSymbol);\\n\\n  function totalSupply() external view returns (uint256 totalTokensIssued);\\n\\n  function transfer(address to, uint256 value) external returns (bool success);\\n\\n  function transferAndCall(address to, uint256 value, bytes calldata data) external returns (bool success);\\n\\n  function transferFrom(address from, address to, uint256 value) external returns (bool success);\\n}\\n\",\"keccak256\":\"0xac02fbc0c7d194e525a71f524d1f7c472df73e19c2b527d7b529badaeaf0ec51\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/vendor/BufferChainlink.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev A library for working with mutable byte buffers in Solidity.\\n *\\n * Byte buffers are mutable and expandable, and provide a variety of primitives\\n * for writing to them. At any time you can fetch a bytes object containing the\\n * current contents of the buffer. The bytes object should not be stored between\\n * operations, as it may change due to resizing of the buffer.\\n */\\nlibrary BufferChainlink {\\n  /**\\n   * @dev Represents a mutable buffer. Buffers have a current value (buf) and\\n   *      a capacity. The capacity may be longer than the current value, in\\n   *      which case it can be extended without the need to allocate more memory.\\n   */\\n  struct buffer {\\n    bytes buf;\\n    uint256 capacity;\\n  }\\n\\n  /**\\n   * @dev Initializes a buffer with an initial capacity.\\n   * @param buf The buffer to initialize.\\n   * @param capacity The number of bytes of space to allocate the buffer.\\n   * @return The buffer, for chaining.\\n   */\\n  function init(buffer memory buf, uint256 capacity) internal pure returns (buffer memory) {\\n    if (capacity % 32 != 0) {\\n      capacity += 32 - (capacity % 32);\\n    }\\n    // Allocate space for the buffer data\\n    buf.capacity = capacity;\\n    assembly {\\n      let ptr := mload(0x40)\\n      mstore(buf, ptr)\\n      mstore(ptr, 0)\\n      mstore(0x40, add(32, add(ptr, capacity)))\\n    }\\n    return buf;\\n  }\\n\\n  /**\\n   * @dev Initializes a new buffer from an existing bytes object.\\n   *      Changes to the buffer may mutate the original value.\\n   * @param b The bytes object to initialize the buffer with.\\n   * @return A new buffer.\\n   */\\n  function fromBytes(bytes memory b) internal pure returns (buffer memory) {\\n    buffer memory buf;\\n    buf.buf = b;\\n    buf.capacity = b.length;\\n    return buf;\\n  }\\n\\n  function resize(buffer memory buf, uint256 capacity) private pure {\\n    bytes memory oldbuf = buf.buf;\\n    init(buf, capacity);\\n    append(buf, oldbuf);\\n  }\\n\\n  function max(uint256 a, uint256 b) private pure returns (uint256) {\\n    if (a > b) {\\n      return a;\\n    }\\n    return b;\\n  }\\n\\n  /**\\n   * @dev Sets buffer length to 0.\\n   * @param buf The buffer to truncate.\\n   * @return The original buffer, for chaining..\\n   */\\n  function truncate(buffer memory buf) internal pure returns (buffer memory) {\\n    assembly {\\n      let bufptr := mload(buf)\\n      mstore(bufptr, 0)\\n    }\\n    return buf;\\n  }\\n\\n  /**\\n   * @dev Writes a byte string to a buffer. Resizes if doing so would exceed\\n   *      the capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param off The start offset to write to.\\n   * @param data The data to append.\\n   * @param len The number of bytes to copy.\\n   * @return The original buffer, for chaining.\\n   */\\n  function write(\\n    buffer memory buf,\\n    uint256 off,\\n    bytes memory data,\\n    uint256 len\\n  ) internal pure returns (buffer memory) {\\n    require(len <= data.length);\\n\\n    if (off + len > buf.capacity) {\\n      resize(buf, max(buf.capacity, len + off) * 2);\\n    }\\n\\n    uint256 dest;\\n    uint256 src;\\n    assembly {\\n      // Memory address of the buffer data\\n      let bufptr := mload(buf)\\n      // Length of existing buffer data\\n      let buflen := mload(bufptr)\\n      // Start address = buffer address + offset + sizeof(buffer length)\\n      dest := add(add(bufptr, 32), off)\\n      // Update buffer length if we're extending it\\n      if gt(add(len, off), buflen) {\\n        mstore(bufptr, add(len, off))\\n      }\\n      src := add(data, 32)\\n    }\\n\\n    // Copy word-length chunks while possible\\n    for (; len >= 32; len -= 32) {\\n      assembly {\\n        mstore(dest, mload(src))\\n      }\\n      dest += 32;\\n      src += 32;\\n    }\\n\\n    // Copy remaining bytes\\n    unchecked {\\n      uint256 mask = (256**(32 - len)) - 1;\\n      assembly {\\n        let srcpart := and(mload(src), not(mask))\\n        let destpart := and(mload(dest), mask)\\n        mstore(dest, or(destpart, srcpart))\\n      }\\n    }\\n\\n    return buf;\\n  }\\n\\n  /**\\n   * @dev Appends a byte string to a buffer. Resizes if doing so would exceed\\n   *      the capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param data The data to append.\\n   * @param len The number of bytes to copy.\\n   * @return The original buffer, for chaining.\\n   */\\n  function append(\\n    buffer memory buf,\\n    bytes memory data,\\n    uint256 len\\n  ) internal pure returns (buffer memory) {\\n    return write(buf, buf.buf.length, data, len);\\n  }\\n\\n  /**\\n   * @dev Appends a byte string to a buffer. Resizes if doing so would exceed\\n   *      the capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param data The data to append.\\n   * @return The original buffer, for chaining.\\n   */\\n  function append(buffer memory buf, bytes memory data) internal pure returns (buffer memory) {\\n    return write(buf, buf.buf.length, data, data.length);\\n  }\\n\\n  /**\\n   * @dev Writes a byte to the buffer. Resizes if doing so would exceed the\\n   *      capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param off The offset to write the byte at.\\n   * @param data The data to append.\\n   * @return The original buffer, for chaining.\\n   */\\n  function writeUint8(\\n    buffer memory buf,\\n    uint256 off,\\n    uint8 data\\n  ) internal pure returns (buffer memory) {\\n    if (off >= buf.capacity) {\\n      resize(buf, buf.capacity * 2);\\n    }\\n\\n    assembly {\\n      // Memory address of the buffer data\\n      let bufptr := mload(buf)\\n      // Length of existing buffer data\\n      let buflen := mload(bufptr)\\n      // Address = buffer address + sizeof(buffer length) + off\\n      let dest := add(add(bufptr, off), 32)\\n      mstore8(dest, data)\\n      // Update buffer length if we extended it\\n      if eq(off, buflen) {\\n        mstore(bufptr, add(buflen, 1))\\n      }\\n    }\\n    return buf;\\n  }\\n\\n  /**\\n   * @dev Appends a byte to the buffer. Resizes if doing so would exceed the\\n   *      capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param data The data to append.\\n   * @return The original buffer, for chaining.\\n   */\\n  function appendUint8(buffer memory buf, uint8 data) internal pure returns (buffer memory) {\\n    return writeUint8(buf, buf.buf.length, data);\\n  }\\n\\n  /**\\n   * @dev Writes up to 32 bytes to the buffer. Resizes if doing so would\\n   *      exceed the capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param off The offset to write at.\\n   * @param data The data to append.\\n   * @param len The number of bytes to write (left-aligned).\\n   * @return The original buffer, for chaining.\\n   */\\n  function write(\\n    buffer memory buf,\\n    uint256 off,\\n    bytes32 data,\\n    uint256 len\\n  ) private pure returns (buffer memory) {\\n    if (len + off > buf.capacity) {\\n      resize(buf, (len + off) * 2);\\n    }\\n\\n    unchecked {\\n      uint256 mask = (256**len) - 1;\\n      // Right-align data\\n      data = data >> (8 * (32 - len));\\n      assembly {\\n        // Memory address of the buffer data\\n        let bufptr := mload(buf)\\n        // Address = buffer address + sizeof(buffer length) + off + len\\n        let dest := add(add(bufptr, off), len)\\n        mstore(dest, or(and(mload(dest), not(mask)), data))\\n        // Update buffer length if we extended it\\n        if gt(add(off, len), mload(bufptr)) {\\n          mstore(bufptr, add(off, len))\\n        }\\n      }\\n    }\\n    return buf;\\n  }\\n\\n  /**\\n   * @dev Writes a bytes20 to the buffer. Resizes if doing so would exceed the\\n   *      capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param off The offset to write at.\\n   * @param data The data to append.\\n   * @return The original buffer, for chaining.\\n   */\\n  function writeBytes20(\\n    buffer memory buf,\\n    uint256 off,\\n    bytes20 data\\n  ) internal pure returns (buffer memory) {\\n    return write(buf, off, bytes32(data), 20);\\n  }\\n\\n  /**\\n   * @dev Appends a bytes20 to the buffer. Resizes if doing so would exceed\\n   *      the capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param data The data to append.\\n   * @return The original buffer, for chhaining.\\n   */\\n  function appendBytes20(buffer memory buf, bytes20 data) internal pure returns (buffer memory) {\\n    return write(buf, buf.buf.length, bytes32(data), 20);\\n  }\\n\\n  /**\\n   * @dev Appends a bytes32 to the buffer. Resizes if doing so would exceed\\n   *      the capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param data The data to append.\\n   * @return The original buffer, for chaining.\\n   */\\n  function appendBytes32(buffer memory buf, bytes32 data) internal pure returns (buffer memory) {\\n    return write(buf, buf.buf.length, data, 32);\\n  }\\n\\n  /**\\n   * @dev Writes an integer to the buffer. Resizes if doing so would exceed\\n   *      the capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param off The offset to write at.\\n   * @param data The data to append.\\n   * @param len The number of bytes to write (right-aligned).\\n   * @return The original buffer, for chaining.\\n   */\\n  function writeInt(\\n    buffer memory buf,\\n    uint256 off,\\n    uint256 data,\\n    uint256 len\\n  ) private pure returns (buffer memory) {\\n    if (len + off > buf.capacity) {\\n      resize(buf, (len + off) * 2);\\n    }\\n\\n    uint256 mask = (256**len) - 1;\\n    assembly {\\n      // Memory address of the buffer data\\n      let bufptr := mload(buf)\\n      // Address = buffer address + off + sizeof(buffer length) + len\\n      let dest := add(add(bufptr, off), len)\\n      mstore(dest, or(and(mload(dest), not(mask)), data))\\n      // Update buffer length if we extended it\\n      if gt(add(off, len), mload(bufptr)) {\\n        mstore(bufptr, add(off, len))\\n      }\\n    }\\n    return buf;\\n  }\\n\\n  /**\\n   * @dev Appends a byte to the end of the buffer. Resizes if doing so would\\n   * exceed the capacity of the buffer.\\n   * @param buf The buffer to append to.\\n   * @param data The data to append.\\n   * @return The original buffer.\\n   */\\n  function appendInt(\\n    buffer memory buf,\\n    uint256 data,\\n    uint256 len\\n  ) internal pure returns (buffer memory) {\\n    return writeInt(buf, buf.buf.length, data, len);\\n  }\\n}\\n\",\"keccak256\":\"0x89388a631c16ad993e4d76d8d19e08ae98e1397f5dfdfb5f9c0b91015df4cf5d\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/vendor/CBORChainlink.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.4.19;\\n\\nimport {BufferChainlink} from \\\"./BufferChainlink.sol\\\";\\n\\nlibrary CBORChainlink {\\n  using BufferChainlink for BufferChainlink.buffer;\\n\\n  uint8 private constant MAJOR_TYPE_INT = 0;\\n  uint8 private constant MAJOR_TYPE_NEGATIVE_INT = 1;\\n  uint8 private constant MAJOR_TYPE_BYTES = 2;\\n  uint8 private constant MAJOR_TYPE_STRING = 3;\\n  uint8 private constant MAJOR_TYPE_ARRAY = 4;\\n  uint8 private constant MAJOR_TYPE_MAP = 5;\\n  uint8 private constant MAJOR_TYPE_TAG = 6;\\n  uint8 private constant MAJOR_TYPE_CONTENT_FREE = 7;\\n\\n  uint8 private constant TAG_TYPE_BIGNUM = 2;\\n  uint8 private constant TAG_TYPE_NEGATIVE_BIGNUM = 3;\\n\\n  function encodeFixedNumeric(BufferChainlink.buffer memory buf, uint8 major, uint64 value) private pure {\\n    if(value <= 23) {\\n      buf.appendUint8(uint8((major << 5) | value));\\n    } else if (value <= 0xFF) {\\n      buf.appendUint8(uint8((major << 5) | 24));\\n      buf.appendInt(value, 1);\\n    } else if (value <= 0xFFFF) {\\n      buf.appendUint8(uint8((major << 5) | 25));\\n      buf.appendInt(value, 2);\\n    } else if (value <= 0xFFFFFFFF) {\\n      buf.appendUint8(uint8((major << 5) | 26));\\n      buf.appendInt(value, 4);\\n    } else {\\n      buf.appendUint8(uint8((major << 5) | 27));\\n      buf.appendInt(value, 8);\\n    }\\n  }\\n\\n  function encodeIndefiniteLengthType(BufferChainlink.buffer memory buf, uint8 major) private pure {\\n    buf.appendUint8(uint8((major << 5) | 31));\\n  }\\n\\n  function encodeUInt(BufferChainlink.buffer memory buf, uint value) internal pure {\\n    if(value > 0xFFFFFFFFFFFFFFFF) {\\n      encodeBigNum(buf, value);\\n    } else {\\n      encodeFixedNumeric(buf, MAJOR_TYPE_INT, uint64(value));\\n    }\\n  }\\n\\n  function encodeInt(BufferChainlink.buffer memory buf, int value) internal pure {\\n    if(value < -0x10000000000000000) {\\n      encodeSignedBigNum(buf, value);\\n    } else if(value > 0xFFFFFFFFFFFFFFFF) {\\n      encodeBigNum(buf, uint(value));\\n    } else if(value >= 0) {\\n      encodeFixedNumeric(buf, MAJOR_TYPE_INT, uint64(uint256(value)));\\n    } else {\\n      encodeFixedNumeric(buf, MAJOR_TYPE_NEGATIVE_INT, uint64(uint256(-1 - value)));\\n    }\\n  }\\n\\n  function encodeBytes(BufferChainlink.buffer memory buf, bytes memory value) internal pure {\\n    encodeFixedNumeric(buf, MAJOR_TYPE_BYTES, uint64(value.length));\\n    buf.append(value);\\n  }\\n\\n  function encodeBigNum(BufferChainlink.buffer memory buf, uint value) internal pure {\\n    buf.appendUint8(uint8((MAJOR_TYPE_TAG << 5) | TAG_TYPE_BIGNUM));\\n    encodeBytes(buf, abi.encode(value));\\n  }\\n\\n  function encodeSignedBigNum(BufferChainlink.buffer memory buf, int input) internal pure {\\n    buf.appendUint8(uint8((MAJOR_TYPE_TAG << 5) | TAG_TYPE_NEGATIVE_BIGNUM));\\n    encodeBytes(buf, abi.encode(uint256(-1 - input)));\\n  }\\n\\n  function encodeString(BufferChainlink.buffer memory buf, string memory value) internal pure {\\n    encodeFixedNumeric(buf, MAJOR_TYPE_STRING, uint64(bytes(value).length));\\n    buf.append(bytes(value));\\n  }\\n\\n  function startArray(BufferChainlink.buffer memory buf) internal pure {\\n    encodeIndefiniteLengthType(buf, MAJOR_TYPE_ARRAY);\\n  }\\n\\n  function startMap(BufferChainlink.buffer memory buf) internal pure {\\n    encodeIndefiniteLengthType(buf, MAJOR_TYPE_MAP);\\n  }\\n\\n  function endSequence(BufferChainlink.buffer memory buf) internal pure {\\n    encodeIndefiniteLengthType(buf, MAJOR_TYPE_CONTENT_FREE);\\n  }\\n}\\n\",\"keccak256\":\"0x08bda450d4dc1d17147fd29810234d35e2c437f1a99be733cfa7ee516db08a48\",\"license\":\"MIT\"},\"@chainlink/contracts/src/v0.8/vendor/ENSResolver.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nabstract contract ENSResolver {\\n  function addr(bytes32 node) public view virtual returns (address);\\n}\\n\",\"keccak256\":\"0x606bda5f3fa27be4cf04f6636dda443b7787b56e87ade988fca2e51d2147613d\",\"license\":\"MIT\"},\"contracts/Protocol.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.7;\\r\\n\\r\\nimport \\\"@chainlink/contracts/src/v0.8/ChainlinkClient.sol\\\";\\r\\n\\r\\ncontract Protocol is ChainlinkClient {\\r\\n\\tusing Chainlink for Chainlink.Request;\\r\\n\\tbytes32 private jobId;\\r\\n\\tuint256 private fee;\\r\\n\\tint256 public total_scores_players;\\r\\n\\taddress private immutable oracle;\\r\\n\\r\\n\\tconstructor() {\\r\\n\\t\\t// setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);\\r\\n\\t\\t// _setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD);\\r\\n\\r\\n\\t\\t_setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);\\r\\n\\r\\n\\t\\toracle = 0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD;\\r\\n\\r\\n\\t\\tjobId = \\\"fcf4140d696d44b687012232948bdd5d\\\";\\r\\n\\t\\tfee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)\\r\\n\\t}\\r\\n\\r\\n\\tstruct MatchUserSquad {\\r\\n\\t\\taddress user_address;\\r\\n\\t\\tint256 total_points;\\r\\n\\t\\tbytes32 squadHash;\\r\\n\\t}\\r\\n\\r\\n\\tstruct WinnerData {\\r\\n\\t\\tint256 matchWinnerPoints;\\r\\n\\t\\taddress matchWinner;\\r\\n\\t\\tuint256 matchPrizePool;\\r\\n\\t\\tbytes32 squadHash;\\r\\n\\t}\\r\\n\\r\\n\\t// match id to winner\\r\\n\\tmapping(string => WinnerData) matchWinnerData;\\r\\n\\tmapping(string => MatchUserSquad) matchUserData;\\r\\n\\r\\n\\t//events\\r\\n\\tevent SquadRegistered(\\r\\n\\t\\tstring match_id,\\r\\n\\t\\tstring uuid,\\r\\n\\t\\taddress user_address,\\r\\n\\t\\tint256 total_points,\\r\\n\\t\\tbytes32 squadHash\\r\\n\\t);\\r\\n\\tevent rewardsClaimed(string match_id, uint256 amount);\\r\\n\\tevent test(bytes32 indexed requestId, int256 _total);\\r\\n\\r\\n\\t//functions\\r\\n\\tfunction submitOracle(string memory api) public payable {\\r\\n\\t\\tChainlink.Request memory req = _buildChainlinkRequest(\\r\\n\\t\\t\\tjobId,\\r\\n\\t\\t\\taddress(this),\\r\\n\\t\\t\\tthis.fulfill.selector\\r\\n\\t\\t);\\r\\n\\t\\treq._add(\\\"get\\\", api);\\r\\n\\t\\treq._add(\\\"path\\\", \\\"total_score\\\");\\r\\n\\t\\treq._addInt(\\\"times\\\", 1);\\r\\n\\t\\t_sendChainlinkRequest(req, fee);\\r\\n\\t}\\r\\n\\r\\n\\tfunction submitSquad(\\r\\n\\t\\tstring memory match_id,\\r\\n\\t\\tstring memory uuid,\\r\\n\\t\\taddress user_address,\\r\\n\\t\\tbytes32 squadHash\\r\\n\\t) public payable {\\r\\n\\t\\tmatchUserData[uuid] = MatchUserSquad(\\r\\n\\t\\t\\tuser_address,\\r\\n\\t\\t\\ttotal_scores_players,\\r\\n\\t\\t\\tsquadHash\\r\\n\\t\\t);\\r\\n\\t\\tif (\\r\\n\\t\\t\\tmatchWinnerData[match_id].matchWinnerPoints < total_scores_players\\r\\n\\t\\t) {\\r\\n\\t\\t\\tmatchWinnerData[match_id].matchWinnerPoints = total_scores_players;\\r\\n\\t\\t\\tmatchWinnerData[match_id].matchWinner = user_address;\\r\\n\\t\\t\\tmatchWinnerData[match_id].squadHash = squadHash;\\r\\n\\t\\t}\\r\\n\\t\\tmatchWinnerData[match_id].matchPrizePool += msg.value;\\r\\n\\t\\temit SquadRegistered(\\r\\n\\t\\t\\tmatch_id,\\r\\n\\t\\t\\tuuid,\\r\\n\\t\\t\\tuser_address,\\r\\n\\t\\t\\ttotal_scores_players,\\r\\n\\t\\t\\tsquadHash\\r\\n\\t\\t);\\r\\n\\t}\\r\\n\\r\\n\\tfunction fulfill(\\r\\n\\t\\tbytes32 _requestId,\\r\\n\\t\\tint256 _total_scores_players\\r\\n\\t) public recordChainlinkFulfillment(_requestId) {\\r\\n\\t\\temit test(_requestId, _total_scores_players);\\r\\n\\t\\ttotal_scores_players = _total_scores_players;\\r\\n\\t}\\r\\n\\r\\n\\tfunction getMatchUserSquad(\\r\\n\\t\\tstring memory uuid\\r\\n\\t) public view returns (MatchUserSquad memory) {\\r\\n\\t\\treturn matchUserData[uuid];\\r\\n\\t}\\r\\n\\r\\n\\tfunction isWinner(string memory match_id) public view returns (bool) {\\r\\n\\t\\treturn matchWinnerData[match_id].matchWinner == msg.sender;\\r\\n\\t}\\r\\n\\r\\n\\tfunction claimRewards(\\r\\n\\t\\tstring memory match_id,\\r\\n\\t\\tbytes32 squadHash,\\r\\n\\t\\tbytes32[] memory merklePath\\r\\n\\t) public {\\r\\n\\t\\t//verification using squadHash, merklePath\\r\\n\\r\\n\\t\\t// if verified\\r\\n\\t\\tif (\\r\\n\\t\\t\\tmatchWinnerData[match_id].matchWinner == msg.sender &&\\r\\n\\t\\t\\tmatchWinnerData[match_id].squadHash == squadHash\\r\\n\\t\\t) {\\r\\n\\t\\t\\tuint256 amount = matchWinnerData[match_id].matchPrizePool;\\r\\n\\t\\t\\tpayable(msg.sender).transfer(amount);\\r\\n\\t\\t\\temit rewardsClaimed(match_id, amount);\\r\\n\\t\\t}\\r\\n\\t}\\r\\n}\\r\\n\",\"keccak256\":\"0xd741041a78ead2962e95c1093ac5fcf2d31d10e00312321f916068d5a8a2fe50\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60a0604052600160045534801561001557600080fd5b50600280546001600160a01b03191673779877a7b0d9e8603169ddbd7836e478b4624789179055736090149792daaee9d1d568c9f9a6f6b46aa29efd6080527f6663663431343064363936643434623638373031323233323934386264643564600655600a61008d670de0b6b3a7640000600161009f565b61009791906100ca565b6007556100ec565b80820281158282048414176100c457634e487b7160e01b600052601160045260246000fd5b92915050565b6000826100e757634e487b7160e01b600052601260045260246000fd5b500490565b6080516113fe610104600039600050506113fe6000f3fe6080604052600436106100705760003560e01c8063bda71d041161004e578063bda71d041461010b578063cc276db81461012b578063e343439f1461013e578063e4b113911461015157600080fd5b80632905e76414610075578063363453441461009e578063bd8664ce146100c0575b600080fd5b34801561008157600080fd5b5061008b60085481565b6040519081526020015b60405180910390f35b3480156100aa57600080fd5b506100be6100b9366004610ef9565b610181565b005b3480156100cc57600080fd5b506100e06100db366004610fcb565b61027b565b6040805182516001600160a01b03168152602080840151908201529181015190820152606001610095565b34801561011757600080fd5b506100be610126366004610fff565b6102e4565b6100be610139366004611021565b6103e6565b6100be61014c366004610fcb565b610583565b34801561015d57600080fd5b5061017161016c366004610fcb565b61064b565b6040519015158152602001610095565b336001600160a01b031660098460405161019b91906110ce565b908152604051908190036020019020600101546001600160a01b03161480156101e45750816009846040516101d091906110ce565b908152602001604051809103902060030154145b156102765760006009846040516101fb91906110ce565b908152604051908190036020018120600201549150339082156108fc029083906000818181858888f1935050505015801561023a573d6000803e3d6000fd5b507f4dc65c584c6b460af07b2b3783043771474eb7cc46a5a17cd6bf15a13b5fcde1848260405161026c929190611116565b60405180910390a1505b505050565b60408051606081018252600080825260208201819052818301529051600a906102a59084906110ce565b90815260408051918290036020908101832060608401835280546001600160a01b03168452600181015491840191909152600201549082015292915050565b60008281526005602052604090205482906001600160a01b031633146103625760405162461bcd60e51b815260206004820152602860248201527f536f75726365206d75737420626520746865206f7261636c65206f6620746865604482015267081c995c5d595cdd60c21b60648201526084015b60405180910390fd5b60008181526005602052604080822080546001600160a01b03191690555182917f7cc135e0cebb02c3480ae5d74d377283180a2601f8f644edf7987b009316c63a91a2827ff12dc8d5ba3d33932afe9cf50f4d8f0b4f7ae9af5ed3edaec31193a26f2665e7836040516103d791815260200190565b60405180910390a25060085550565b6040518060600160405280836001600160a01b03168152602001600854815260200182815250600a8460405161041c91906110ce565b9081526040805160209281900383018120845181546001600160a01b0319166001600160a01b039091161781559284015160018401559201516002909101556008549060099061046d9087906110ce565b9081526040519081900360200190205412156105135760085460098560405161049691906110ce565b9081526040519081900360200181209190915582906009906104b99087906110ce565b908152602001604051809103902060010160006101000a8154816001600160a01b0302191690836001600160a01b03160217905550806009856040516104ff91906110ce565b908152604051908190036020019020600301555b3460098560405161052491906110ce565b90815260200160405180910390206002016000828254610544919061114e565b90915550506008546040517f5e174a6bd8dcf69d8f189514193c1fd74741f58d7b60c94d40545885168798a89161026c91879187918791908790611161565b60006105996006543063bda71d0460e01b61068a565b60408051808201909152600381526219d95d60ea1b60208201529091506105c2908290846106af565b610616604051806040016040528060048152602001630e0c2e8d60e31b8152506040518060400160405280600b81526020016a746f74616c5f73636f726560a81b815250836106af9092919063ffffffff16565b60408051808201909152600581526474696d657360d81b602082015261063f90829060016106cd565b610276816007546106eb565b6000336001600160a01b031660098360405161066791906110ce565b908152604051908190036020019020600101546001600160a01b03161492915050565b610692610e09565b61069a610e09565b6106a68186868661070e565b95945050505050565b60808301516106be9083610754565b60808301516102769082610754565b60808301516106dc9083610754565b6080830151610276908261076b565b600354600090610705906001600160a01b031684846107ce565b90505b92915050565b610716610e09565b6107268560800151610100610861565b50508284526001600160a01b03821660208501526001600160e01b031981166040850152835b949350505050565b61076182600383516108c6565b61027682826109d3565b67ffffffffffffffff1981121561078a5761078682826109fa565b5050565b6001600160401b038113156107a3576107868282610a3c565b600081126107b757610786826000836108c6565b6107868260016107c9846000196111ad565b6108c6565b6004546000906107df81600161114e565b600455835160408086015160808701515191516000936320214ca360e11b936108179386938493923092918a916001916024016111d4565b60408051601f198184030181529190526020810180516001600160e01b03166001600160e01b031990931692909217909152905061085786838684610a5f565b9695505050505050565b60408051808201909152606081526000602082015261088160208361123c565b156108a95761089160208361123c565b61089c90602061125e565b6108a6908361114e565b91505b506020828101829052604080518085526000815290920101905290565b6017816001600160401b0316116108f0576108ea8360e0600585901b168317610bbd565b50505050565b60ff816001600160401b03161161092c57610916836018611fe0600586901b1617610bbd565b506108ea836001600160401b0383166001610be2565b61ffff816001600160401b03161161096957610953836019611fe0600586901b1617610bbd565b506108ea836001600160401b0383166002610be2565b63ffffffff816001600160401b0316116109a85761099283601a611fe0600586901b1617610bbd565b506108ea836001600160401b0383166004610be2565b6109bd83601b611fe0600586901b1617610bbd565b506108ea836001600160401b0383166008610be2565b60408051808201909152606081526000602082015261070583846000015151848551610c08565b610a058260c3610bbd565b5061078682610a16836000196111ad565b604051602001610a2891815260200190565b604051602081830303815290604052610cf2565b610a478260c2610bbd565b506107868282604051602001610a2891815260200190565b6040516bffffffffffffffffffffffff193060601b1660208201526034810184905260009060540160408051808303601f1901815282825280516020918201206000818152600590925291812080546001600160a01b0319166001600160a01b038a1617905590925082917fb5e6e01e79f91267dc17b4e6314d5d4d03593d2ceee0fbb452b750bd70ea5af99190a2600254604051630200057560e51b81526001600160a01b0390911690634000aea090610b2290889087908790600401611271565b6020604051808303816000875af1158015610b41573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b659190611298565b61074c5760405162461bcd60e51b815260206004820152602360248201527f756e61626c6520746f207472616e73666572416e6443616c6c20746f206f7261604482015262636c6560e81b6064820152608401610359565b6040805180820190915260608152600060208201526107058384600001515184610cff565b60408051808201909152606081526000602082015261074c848560000151518585610d5a565b6040805180820190915260608152600060208201528251821115610c2b57600080fd5b6020850151610c3a838661114e565b1115610c6d57610c6d85610c5d87602001518786610c58919061114e565b610ddb565b610c689060026112c1565b610df2565b600080865180518760208301019350808887011115610c8c5787860182525b505050602084015b60208410610ccc5780518252610cab60208361114e565b9150610cb860208261114e565b9050610cc560208561125e565b9350610c94565b51815160001960208690036101000a019081169019919091161790525083949350505050565b61076182600283516108c6565b60408051808201909152606081526000602082015283602001518310610d3457610d348485602001516002610c6891906112c1565b8351805160208583010184815350808503610d50576001810182525b5093949350505050565b6040805180820190915260608152600060208201526020850151610d7e858461114e565b1115610d9257610d9285610c5d868561114e565b60006001610da2846101006113bc565b610dac919061125e565b9050855183868201018583198251161781525080518487011115610dd05783860181525b509495945050505050565b600081831115610dec575081610708565b50919050565b8151610dfe8383610861565b506108ea83826109d3565b6040805160a0810182526000808252602080830182905282840182905260608084018390528451808601909552845283015290608082015290565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f191681016001600160401b0381118282101715610e8257610e82610e44565b604052919050565b600082601f830112610e9b57600080fd5b81356001600160401b03811115610eb457610eb4610e44565b610ec7601f8201601f1916602001610e5a565b818152846020838601011115610edc57600080fd5b816020850160208301376000918101602001919091529392505050565b600080600060608486031215610f0e57600080fd5b83356001600160401b0380821115610f2557600080fd5b610f3187838801610e8a565b945060209150818601359350604086013581811115610f4f57600080fd5b8601601f81018813610f6057600080fd5b803582811115610f7257610f72610e44565b8060051b9250610f83848401610e5a565b818152928201840192848101908a851115610f9d57600080fd5b928501925b84841015610fbb57833582529285019290850190610fa2565b8096505050505050509250925092565b600060208284031215610fdd57600080fd5b81356001600160401b03811115610ff357600080fd5b61074c84828501610e8a565b6000806040838503121561101257600080fd5b50508035926020909101359150565b6000806000806080858703121561103757600080fd5b84356001600160401b038082111561104e57600080fd5b61105a88838901610e8a565b9550602087013591508082111561107057600080fd5b5061107d87828801610e8a565b93505060408501356001600160a01b038116811461109a57600080fd5b9396929550929360600135925050565b60005b838110156110c55781810151838201526020016110ad565b50506000910152565b600082516110e08184602087016110aa565b9190910192915050565b600081518084526111028160208601602086016110aa565b601f01601f19169290920160200192915050565b60408152600061112960408301856110ea565b90508260208301529392505050565b634e487b7160e01b600052601160045260246000fd5b8082018082111561070857610708611138565b60a08152600061117460a08301886110ea565b828103602084015261118681886110ea565b6001600160a01b039690961660408401525050606081019290925260809091015292915050565b81810360008312801583831316838312821617156111cd576111cd611138565b5092915050565b6001600160a01b0389811682526020820189905260408201889052861660608201526001600160e01b03198516608082015260a0810184905260c0810183905261010060e0820181905260009061122d838201856110ea565b9b9a5050505050505050505050565b60008261125957634e487b7160e01b600052601260045260246000fd5b500690565b8181038181111561070857610708611138565b60018060a01b03841681528260208201526060604082015260006106a660608301846110ea565b6000602082840312156112aa57600080fd5b815180151581146112ba57600080fd5b9392505050565b808202811582820484141761070857610708611138565b600181815b808511156113135781600019048211156112f9576112f9611138565b8085161561130657918102915b93841c93908002906112dd565b509250929050565b60008261132a57506001610708565b8161133757506000610708565b816001811461134d576002811461135757611373565b6001915050610708565b60ff84111561136857611368611138565b50506001821b610708565b5060208310610133831016604e8410600b8410161715611396575081810a610708565b6113a083836112d8565b80600019048211156113b4576113b4611138565b029392505050565b6000610705838361131b56fea264697066735822122014603e43a04326fd117649706f5624ac4c0fc4c88261dcb1eefabf380eb5c9d164736f6c63430008110033",
+  "deployedBytecode": "0x6080604052600436106100705760003560e01c8063bda71d041161004e578063bda71d041461010b578063cc276db81461012b578063e343439f1461013e578063e4b113911461015157600080fd5b80632905e76414610075578063363453441461009e578063bd8664ce146100c0575b600080fd5b34801561008157600080fd5b5061008b60085481565b6040519081526020015b60405180910390f35b3480156100aa57600080fd5b506100be6100b9366004610ef9565b610181565b005b3480156100cc57600080fd5b506100e06100db366004610fcb565b61027b565b6040805182516001600160a01b03168152602080840151908201529181015190820152606001610095565b34801561011757600080fd5b506100be610126366004610fff565b6102e4565b6100be610139366004611021565b6103e6565b6100be61014c366004610fcb565b610583565b34801561015d57600080fd5b5061017161016c366004610fcb565b61064b565b6040519015158152602001610095565b336001600160a01b031660098460405161019b91906110ce565b908152604051908190036020019020600101546001600160a01b03161480156101e45750816009846040516101d091906110ce565b908152602001604051809103902060030154145b156102765760006009846040516101fb91906110ce565b908152604051908190036020018120600201549150339082156108fc029083906000818181858888f1935050505015801561023a573d6000803e3d6000fd5b507f4dc65c584c6b460af07b2b3783043771474eb7cc46a5a17cd6bf15a13b5fcde1848260405161026c929190611116565b60405180910390a1505b505050565b60408051606081018252600080825260208201819052818301529051600a906102a59084906110ce565b90815260408051918290036020908101832060608401835280546001600160a01b03168452600181015491840191909152600201549082015292915050565b60008281526005602052604090205482906001600160a01b031633146103625760405162461bcd60e51b815260206004820152602860248201527f536f75726365206d75737420626520746865206f7261636c65206f6620746865604482015267081c995c5d595cdd60c21b60648201526084015b60405180910390fd5b60008181526005602052604080822080546001600160a01b03191690555182917f7cc135e0cebb02c3480ae5d74d377283180a2601f8f644edf7987b009316c63a91a2827ff12dc8d5ba3d33932afe9cf50f4d8f0b4f7ae9af5ed3edaec31193a26f2665e7836040516103d791815260200190565b60405180910390a25060085550565b6040518060600160405280836001600160a01b03168152602001600854815260200182815250600a8460405161041c91906110ce565b9081526040805160209281900383018120845181546001600160a01b0319166001600160a01b039091161781559284015160018401559201516002909101556008549060099061046d9087906110ce565b9081526040519081900360200190205412156105135760085460098560405161049691906110ce565b9081526040519081900360200181209190915582906009906104b99087906110ce565b908152602001604051809103902060010160006101000a8154816001600160a01b0302191690836001600160a01b03160217905550806009856040516104ff91906110ce565b908152604051908190036020019020600301555b3460098560405161052491906110ce565b90815260200160405180910390206002016000828254610544919061114e565b90915550506008546040517f5e174a6bd8dcf69d8f189514193c1fd74741f58d7b60c94d40545885168798a89161026c91879187918791908790611161565b60006105996006543063bda71d0460e01b61068a565b60408051808201909152600381526219d95d60ea1b60208201529091506105c2908290846106af565b610616604051806040016040528060048152602001630e0c2e8d60e31b8152506040518060400160405280600b81526020016a746f74616c5f73636f726560a81b815250836106af9092919063ffffffff16565b60408051808201909152600581526474696d657360d81b602082015261063f90829060016106cd565b610276816007546106eb565b6000336001600160a01b031660098360405161066791906110ce565b908152604051908190036020019020600101546001600160a01b03161492915050565b610692610e09565b61069a610e09565b6106a68186868661070e565b95945050505050565b60808301516106be9083610754565b60808301516102769082610754565b60808301516106dc9083610754565b6080830151610276908261076b565b600354600090610705906001600160a01b031684846107ce565b90505b92915050565b610716610e09565b6107268560800151610100610861565b50508284526001600160a01b03821660208501526001600160e01b031981166040850152835b949350505050565b61076182600383516108c6565b61027682826109d3565b67ffffffffffffffff1981121561078a5761078682826109fa565b5050565b6001600160401b038113156107a3576107868282610a3c565b600081126107b757610786826000836108c6565b6107868260016107c9846000196111ad565b6108c6565b6004546000906107df81600161114e565b600455835160408086015160808701515191516000936320214ca360e11b936108179386938493923092918a916001916024016111d4565b60408051601f198184030181529190526020810180516001600160e01b03166001600160e01b031990931692909217909152905061085786838684610a5f565b9695505050505050565b60408051808201909152606081526000602082015261088160208361123c565b156108a95761089160208361123c565b61089c90602061125e565b6108a6908361114e565b91505b506020828101829052604080518085526000815290920101905290565b6017816001600160401b0316116108f0576108ea8360e0600585901b168317610bbd565b50505050565b60ff816001600160401b03161161092c57610916836018611fe0600586901b1617610bbd565b506108ea836001600160401b0383166001610be2565b61ffff816001600160401b03161161096957610953836019611fe0600586901b1617610bbd565b506108ea836001600160401b0383166002610be2565b63ffffffff816001600160401b0316116109a85761099283601a611fe0600586901b1617610bbd565b506108ea836001600160401b0383166004610be2565b6109bd83601b611fe0600586901b1617610bbd565b506108ea836001600160401b0383166008610be2565b60408051808201909152606081526000602082015261070583846000015151848551610c08565b610a058260c3610bbd565b5061078682610a16836000196111ad565b604051602001610a2891815260200190565b604051602081830303815290604052610cf2565b610a478260c2610bbd565b506107868282604051602001610a2891815260200190565b6040516bffffffffffffffffffffffff193060601b1660208201526034810184905260009060540160408051808303601f1901815282825280516020918201206000818152600590925291812080546001600160a01b0319166001600160a01b038a1617905590925082917fb5e6e01e79f91267dc17b4e6314d5d4d03593d2ceee0fbb452b750bd70ea5af99190a2600254604051630200057560e51b81526001600160a01b0390911690634000aea090610b2290889087908790600401611271565b6020604051808303816000875af1158015610b41573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b659190611298565b61074c5760405162461bcd60e51b815260206004820152602360248201527f756e61626c6520746f207472616e73666572416e6443616c6c20746f206f7261604482015262636c6560e81b6064820152608401610359565b6040805180820190915260608152600060208201526107058384600001515184610cff565b60408051808201909152606081526000602082015261074c848560000151518585610d5a565b6040805180820190915260608152600060208201528251821115610c2b57600080fd5b6020850151610c3a838661114e565b1115610c6d57610c6d85610c5d87602001518786610c58919061114e565b610ddb565b610c689060026112c1565b610df2565b600080865180518760208301019350808887011115610c8c5787860182525b505050602084015b60208410610ccc5780518252610cab60208361114e565b9150610cb860208261114e565b9050610cc560208561125e565b9350610c94565b51815160001960208690036101000a019081169019919091161790525083949350505050565b61076182600283516108c6565b60408051808201909152606081526000602082015283602001518310610d3457610d348485602001516002610c6891906112c1565b8351805160208583010184815350808503610d50576001810182525b5093949350505050565b6040805180820190915260608152600060208201526020850151610d7e858461114e565b1115610d9257610d9285610c5d868561114e565b60006001610da2846101006113bc565b610dac919061125e565b9050855183868201018583198251161781525080518487011115610dd05783860181525b509495945050505050565b600081831115610dec575081610708565b50919050565b8151610dfe8383610861565b506108ea83826109d3565b6040805160a0810182526000808252602080830182905282840182905260608084018390528451808601909552845283015290608082015290565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f191681016001600160401b0381118282101715610e8257610e82610e44565b604052919050565b600082601f830112610e9b57600080fd5b81356001600160401b03811115610eb457610eb4610e44565b610ec7601f8201601f1916602001610e5a565b818152846020838601011115610edc57600080fd5b816020850160208301376000918101602001919091529392505050565b600080600060608486031215610f0e57600080fd5b83356001600160401b0380821115610f2557600080fd5b610f3187838801610e8a565b945060209150818601359350604086013581811115610f4f57600080fd5b8601601f81018813610f6057600080fd5b803582811115610f7257610f72610e44565b8060051b9250610f83848401610e5a565b818152928201840192848101908a851115610f9d57600080fd5b928501925b84841015610fbb57833582529285019290850190610fa2565b8096505050505050509250925092565b600060208284031215610fdd57600080fd5b81356001600160401b03811115610ff357600080fd5b61074c84828501610e8a565b6000806040838503121561101257600080fd5b50508035926020909101359150565b6000806000806080858703121561103757600080fd5b84356001600160401b038082111561104e57600080fd5b61105a88838901610e8a565b9550602087013591508082111561107057600080fd5b5061107d87828801610e8a565b93505060408501356001600160a01b038116811461109a57600080fd5b9396929550929360600135925050565b60005b838110156110c55781810151838201526020016110ad565b50506000910152565b600082516110e08184602087016110aa565b9190910192915050565b600081518084526111028160208601602086016110aa565b601f01601f19169290920160200192915050565b60408152600061112960408301856110ea565b90508260208301529392505050565b634e487b7160e01b600052601160045260246000fd5b8082018082111561070857610708611138565b60a08152600061117460a08301886110ea565b828103602084015261118681886110ea565b6001600160a01b039690961660408401525050606081019290925260809091015292915050565b81810360008312801583831316838312821617156111cd576111cd611138565b5092915050565b6001600160a01b0389811682526020820189905260408201889052861660608201526001600160e01b03198516608082015260a0810184905260c0810183905261010060e0820181905260009061122d838201856110ea565b9b9a5050505050505050505050565b60008261125957634e487b7160e01b600052601260045260246000fd5b500690565b8181038181111561070857610708611138565b60018060a01b03841681528260208201526060604082015260006106a660608301846110ea565b6000602082840312156112aa57600080fd5b815180151581146112ba57600080fd5b9392505050565b808202811582820484141761070857610708611138565b600181815b808511156113135781600019048211156112f9576112f9611138565b8085161561130657918102915b93841c93908002906112dd565b509250929050565b60008261132a57506001610708565b8161133757506000610708565b816001811461134d576002811461135757611373565b6001915050610708565b60ff84111561136857611368611138565b50506001821b610708565b5060208310610133831016604e8410600b8410161715611396575081810a610708565b6113a083836112d8565b80600019048211156113b4576113b4611138565b029392505050565b6000610705838361131b56fea264697066735822122014603e43a04326fd117649706f5624ac4c0fc4c88261dcb1eefabf380eb5c9d164736f6c63430008110033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 325,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "s_ens",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_contract(ENSInterface)982"
+      },
+      {
+        "astId": 327,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "s_ensNode",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_bytes32"
+      },
+      {
+        "astId": 330,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "s_link",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_contract(LinkTokenInterface)1182"
+      },
+      {
+        "astId": 333,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "s_oracle",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_contract(OperatorInterface)1047"
+      },
+      {
+        "astId": 336,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "s_requestCount",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 340,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "s_pendingRequests",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_mapping(t_bytes32,t_address)"
+      },
+      {
+        "astId": 2172,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "jobId",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_bytes32"
+      },
+      {
+        "astId": 2174,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "fee",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 2176,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "total_scores_players",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_int256"
+      },
+      {
+        "astId": 2224,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "matchWinnerData",
+        "offset": 0,
+        "slot": "9",
+        "type": "t_mapping(t_string_memory_ptr,t_struct(WinnerData)2219_storage)"
+      },
+      {
+        "astId": 2229,
+        "contract": "contracts/Protocol.sol:Protocol",
+        "label": "matchUserData",
+        "offset": 0,
+        "slot": "10",
+        "type": "t_mapping(t_string_memory_ptr,t_struct(MatchUserSquad)2210_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_contract(ENSInterface)982": {
+        "encoding": "inplace",
+        "label": "contract ENSInterface",
+        "numberOfBytes": "20"
+      },
+      "t_contract(LinkTokenInterface)1182": {
+        "encoding": "inplace",
+        "label": "contract LinkTokenInterface",
+        "numberOfBytes": "20"
+      },
+      "t_contract(OperatorInterface)1047": {
+        "encoding": "inplace",
+        "label": "contract OperatorInterface",
+        "numberOfBytes": "20"
+      },
+      "t_int256": {
+        "encoding": "inplace",
+        "label": "int256",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_bytes32,t_address)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      },
+      "t_mapping(t_string_memory_ptr,t_struct(MatchUserSquad)2210_storage)": {
+        "encoding": "mapping",
+        "key": "t_string_memory_ptr",
+        "label": "mapping(string => struct Protocol.MatchUserSquad)",
+        "numberOfBytes": "32",
+        "value": "t_struct(MatchUserSquad)2210_storage"
+      },
+      "t_mapping(t_string_memory_ptr,t_struct(WinnerData)2219_storage)": {
+        "encoding": "mapping",
+        "key": "t_string_memory_ptr",
+        "label": "mapping(string => struct Protocol.WinnerData)",
+        "numberOfBytes": "32",
+        "value": "t_struct(WinnerData)2219_storage"
+      },
+      "t_string_memory_ptr": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(MatchUserSquad)2210_storage": {
+        "encoding": "inplace",
+        "label": "struct Protocol.MatchUserSquad",
+        "members": [
+          {
+            "astId": 2205,
+            "contract": "contracts/Protocol.sol:Protocol",
+            "label": "user_address",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 2207,
+            "contract": "contracts/Protocol.sol:Protocol",
+            "label": "total_points",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_int256"
+          },
+          {
+            "astId": 2209,
+            "contract": "contracts/Protocol.sol:Protocol",
+            "label": "squadHash",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_bytes32"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_struct(WinnerData)2219_storage": {
+        "encoding": "inplace",
+        "label": "struct Protocol.WinnerData",
+        "members": [
+          {
+            "astId": 2212,
+            "contract": "contracts/Protocol.sol:Protocol",
+            "label": "matchWinnerPoints",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_int256"
+          },
+          {
+            "astId": 2214,
+            "contract": "contracts/Protocol.sol:Protocol",
+            "label": "matchWinner",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address"
+          },
+          {
+            "astId": 2216,
+            "contract": "contracts/Protocol.sol:Protocol",
+            "label": "matchPrizePool",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 2218,
+            "contract": "contracts/Protocol.sol:Protocol",
+            "label": "squadHash",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bytes32"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
