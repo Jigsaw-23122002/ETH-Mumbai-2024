@@ -5,10 +5,54 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
-  31337: {
+  11155111: {
     Protocol: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0x21b873E8e7ceCb3925aF520800e0ad5Ed84ec423",
       abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "id",
+              type: "bytes32",
+            },
+          ],
+          name: "ChainlinkCancelled",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "id",
+              type: "bytes32",
+            },
+          ],
+          name: "ChainlinkFulfilled",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "id",
+              type: "bytes32",
+            },
+          ],
+          name: "ChainlinkRequested",
+          type: "event",
+        },
         {
           anonymous: false,
           inputs: [
@@ -32,15 +76,9 @@ const deployedContracts = {
             },
             {
               indexed: false,
-              internalType: "uint256",
+              internalType: "int256",
               name: "total_points",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "bytes32",
-              name: "pointsMerkleRoot",
-              type: "bytes32",
+              type: "int256",
             },
             {
               indexed: false,
@@ -72,14 +110,61 @@ const deployedContracts = {
           type: "event",
         },
         {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "requestId",
+              type: "bytes32",
+            },
+            {
+              indexed: false,
+              internalType: "int256",
+              name: "_total",
+              type: "int256",
+            },
+          ],
+          name: "test",
+          type: "event",
+        },
+        {
           inputs: [
             {
               internalType: "string",
               name: "match_id",
               type: "string",
             },
+            {
+              internalType: "bytes32",
+              name: "squadHash",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes32[]",
+              name: "merklePath",
+              type: "bytes32[]",
+            },
           ],
           name: "claimRewards",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "_requestId",
+              type: "bytes32",
+            },
+            {
+              internalType: "int256",
+              name: "_total_scores_players",
+              type: "int256",
+            },
+          ],
+          name: "fulfill",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
@@ -102,14 +187,9 @@ const deployedContracts = {
                   type: "address",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "int256",
                   name: "total_points",
-                  type: "uint256",
-                },
-                {
-                  internalType: "bytes32",
-                  name: "pointsMerkleRoot",
-                  type: "bytes32",
+                  type: "int256",
                 },
                 {
                   internalType: "bytes32",
@@ -148,6 +228,19 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "string",
+              name: "api",
+              type: "string",
+            },
+          ],
+          name: "submitOracle",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
               name: "match_id",
               type: "string",
             },
@@ -162,16 +255,6 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "uint256",
-              name: "total_points",
-              type: "uint256",
-            },
-            {
-              internalType: "bytes32",
-              name: "pointsMerkleRoot",
-              type: "bytes32",
-            },
-            {
               internalType: "bytes32",
               name: "squadHash",
               type: "bytes32",
@@ -180,6 +263,19 @@ const deployedContracts = {
           name: "submitSquad",
           outputs: [],
           stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "total_scores_players",
+          outputs: [
+            {
+              internalType: "int256",
+              name: "",
+              type: "int256",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
       ],
