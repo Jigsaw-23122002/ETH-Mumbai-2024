@@ -20,7 +20,7 @@ import Player from "~~/components/Player";
 import { Spinner } from "~~/components/Spinner";
 import { EtherInput } from "~~/components/scaffold-eth";
 import players from "~~/data/match_players.json";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import "~~/styles/test1.css";
 
 const AnonAadhaarProvider = dynamic(() => import("@anon-aadhaar/react").then(module => module.AnonAadhaarProvider), {
@@ -45,6 +45,21 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
   const [selectedPlayers, setSelectedPlayers] = useState({ players: [] });
   const [savedPlayers, setSavedPlayers] = useState(null);
   const [betAmount, setBetAmount] = useState("0");
+  const [logLevel, setLogLevel] = useState(1);
+  const [playerPoints, setPlayerPoints] = useState([]);
+  const [isWinner, setIsWinner] = useState(false);
+  const [logsAll, setLogsAll] = useState([
+    "The Match Has Ended 🔚",
+    "Calculating The Hash Squad 🔎",
+    "Signing The Proof With Aadhar Proof 💳",
+    "Generating The ZK Proof 🧾",
+    "Verifying Your Squad... 🕵️‍♂️",
+    "Squad Verified, No Tampering Detected ✅",
+    "Calculating Total Score 💯",
+    // "Your Total Score is 200 🚀",
+    // "You've Won, Please Claim Your Rewards 💸",
+    // "You've Unfortunately Lost, Better Luck Next Time 😥",
+  ]);
 
   const [anonAadhaarStatus, setAnonAadhaarStatus] = useState(false);
 
@@ -64,6 +79,21 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
     onBlockConfirmation: txnReceipt => {
       console.log("Transaction blockHash", txnReceipt.blockHash);
     },
+  });
+
+  const { writeAsync: writeAsync3, isLoading: isLoading3 } = useScaffoldContractWrite({
+    contractName: "Protocol",
+    functionName: "claimRewards",
+    blockConfirmations: 1,
+    onBlockConfirmation: txnReceipt => {
+      console.log("Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
+
+  const { data: winnerData } = useScaffoldContractRead({
+    contractName: "Protocol",
+    functionName: "matchWinnerData",
+    args: [params.id.split("M")[1]],
   });
 
   function computeMerkleRoot(points) {
@@ -135,10 +165,10 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
     await writeAsync1({ args: [api_url] });
 
     // console.log(savedPlayers.map(savedPlayer => savedPlayer.player_id));
-    var merkleRoot = computeMerkleRoot(padArrayWithZeros(savedPlayers.map(savedPlayer => savedPlayer.player_id)));
+    const merkleRoot = computeMerkleRoot(padArrayWithZeros(savedPlayers.map(savedPlayer => savedPlayer.player_id)));
     // console.log(merkleRoot);
     // console.log(address);
-    var timeconst = keccak256(`0x${Date.now().toString(16)}`);
+    const timeconst = keccak256(`0x${Date.now().toString(16)}`);
     localStorage.setItem("timestamp_" + params.id, timeconst);
     const finalHash = keccak256(encodePacked(["bytes20", "bytes32", "bytes32"], [address, merkleRoot, timeconst]));
     // console.log(timeconst);
@@ -150,6 +180,45 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
     });
     localStorage.setItem("step_" + params.id, 4);
     setStep(4);
+  };
+
+  const verifyAndCalculatePoints = async () => {
+    setLogLevel(2);
+    const merkleRoot = computeMerkleRoot(padArrayWithZeros(savedPlayers.map(savedPlayer => savedPlayer.player_id)));
+    setLogLevel(7);
+    const data = await fetch(
+      `https://puce-smoggy-clam.cyclic.app/scores/${params.id.split("M")[1]}/${savedPlayers
+        .map(savedPlayer => savedPlayer.player_id)
+        .join("P")}`,
+    );
+    const res = await data.json();
+    setLogsAll([...logsAll, `Your Total Score Is ${res.total_score}`]);
+    setPlayerPoints([...playerPoints, ...res.player_scores]);
+    setLogLevel(9);
+    if (winnerData[1] === address) {
+      setLogsAll([...logsAll, "You've Won, Please Claim Your Rewards 💸"]);
+      setLogLevel(10);
+      setIsWinner(true);
+    } else {
+      setLogsAll([...logsAll, "You've Unfortunately Lost, Better Luck Next Time 😥"]);
+      setLogLevel(10);
+    }
+  };
+
+  const claimReward = async () => {
+    const merkleRoot = computeMerkleRoot(padArrayWithZeros(savedPlayers.map(savedPlayer => savedPlayer.player_id)));
+    // console.log(merkleRoot);
+    // console.log(address);
+    const timeconst = localStorage.getItem("timestamp_" + params.id);
+    const finalHash = keccak256(encodePacked(["bytes20", "bytes32", "bytes32"], [address, merkleRoot, timeconst]));
+    // console.log(timeconst);
+    // console.log(finalHash);
+
+    await writeAsync3({
+      args: [params.id.split("M")[1], finalHash],
+    });
+
+    setIsWinner(false);
   };
 
   if (isLoading) {
@@ -530,13 +599,18 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
                 <div className="m-0 mb-3 mt-10">
                   <div className="m-0 mb-3 mt-10 flex items-center justify-evenly w-full">
                     <div className="text-center lg:text-left">
-                      <button className="btn btn-accent">
+                      <button
+                        className="btn btn-accent"
+                        onClick={() => {
+                          verifyAndCalculatePoints();
+                        }}
+                      >
                         Verify Squad & Calculate Points
                         <CalculatorIcon className="h-4 w-4" />
                       </button>
                     </div>
                     <div className="text-center lg:text-left">
-                      <button className="btn btn-accent">
+                      <button className="btn btn-accent" disabled={!isWinner} onClick={() => claimReward()}>
                         Claim Rewards
                         <TrophyIcon className="h-4 w-4" />
                       </button>
@@ -549,10 +623,10 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
                   <div className="mockup-browser-toolbar">
                     <div className="input">Logs</div>
                   </div>
-                  <div className="px-4 py-4 bg-neutral text-secondary h-52">
-                    <div>test</div>
-                    <div>test</div>
-                    <div>test</div>
+                  <div className="px-4 py-4 bg-neutral text-secondary h-52 overflow-y-scroll">
+                    {logsAll.slice(0, logLevel).map((logStatement, i) => (
+                      <div>{`[${i + 1}] ${logStatement}`}</div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -563,49 +637,49 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
                 {/* Wicket Keeper */}
 
                 <div className="absolute top-0 left-40">
-                  <Player name={savedPlayers[0]?.value} position="WK" />
+                  <Player name={savedPlayers[0]?.value} position="WK" points={playerPoints[0]} />
                 </div>
 
                 {/* Row 1 */}
 
                 <div className="absolute top-24 left-0">
-                  <Player name={savedPlayers[1]?.value} position="Bat" />
+                  <Player name={savedPlayers[1]?.value} position="Bat" points={playerPoints[1]} />
                 </div>
                 <div className="absolute top-24 left-40">
-                  <Player name={savedPlayers[2]?.value} position="Bat" />
+                  <Player name={savedPlayers[2]?.value} position="Bat" points={playerPoints[2]} />
                 </div>
                 <div className="absolute top-24 left-80">
-                  <Player name={savedPlayers[3]?.value} position="Bat" />
+                  <Player name={savedPlayers[3]?.value} position="Bat" points={playerPoints[3]} />
                 </div>
 
                 {/* Row 2 */}
 
                 <div className="absolute top-48 left-0">
-                  <Player name={savedPlayers[4]?.value} position="Bat" />
+                  <Player name={savedPlayers[4]?.value} position="Bat" points={playerPoints[4]} />
                 </div>
                 <div className="absolute top-48 left-40">
-                  <Player name={savedPlayers[5]?.value} position="Bat" />
+                  <Player name={savedPlayers[5]?.value} position="Bat" points={playerPoints[5]} />
                 </div>
                 <div className="absolute top-48 left-80">
-                  <Player name={savedPlayers[6]?.value} position="Bowl" />
+                  <Player name={savedPlayers[6]?.value} position="Bowl" points={playerPoints[6]} />
                 </div>
 
                 {/* Row 3 */}
 
                 <div className="absolute top-72 left-0">
-                  <Player name={savedPlayers[7]?.value} position="Bowl" />
+                  <Player name={savedPlayers[7]?.value} position="Bowl" points={playerPoints[7]} />
                 </div>
                 <div className="absolute top-72 left-40">
-                  <Player name={savedPlayers[8]?.value} position="Bowl" />
+                  <Player name={savedPlayers[8]?.value} position="Bowl" points={playerPoints[8]} />
                 </div>
                 <div className="absolute top-72 left-80">
-                  <Player name={savedPlayers[9]?.value} position="Bowl" />
+                  <Player name={savedPlayers[9]?.value} position="Bowl" points={playerPoints[9]} />
                 </div>
 
                 {/* Last */}
 
                 <div className="absolute bottom-0 left-40">
-                  <Player name={savedPlayers[10]?.value} position="Bowl" />
+                  <Player name={savedPlayers[10]?.value} position="Bowl" points={playerPoints[10]} />
                 </div>
               </div>
             </div>
