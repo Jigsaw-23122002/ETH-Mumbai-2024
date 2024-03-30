@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   4002: {
     Protocol: {
-      address: "0xb4Fc6Ed9561558B36a012E70bfe6d03Ae81353CF",
+      address: "0x428D0A6e0eB291cba9952b5D83f0E4d59072e251",
       abi: [
         {
           inputs: [],

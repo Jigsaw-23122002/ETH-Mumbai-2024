@@ -133,7 +133,6 @@ const config: HardhatUserConfig = {
     fantomTestnet: {
       url: "https://fantom-testnet.drpc.org",
       accounts: [deployerPrivateKey],
-      saveDeployments: true,
       live: true,
     },
   },

@@ -105,10 +105,7 @@ contract Protocol is ChainlinkClient {
 	}
 
 	function isWinner(string memory match_id) public view returns (bool) {
-		if (
-			matchWinnerData[match_id].matchWinner ==
-			msg.sender
-		) {
+		if (matchWinnerData[match_id].matchWinner == msg.sender) {
 			return true;
 		} else {
 			return false;
@@ -126,6 +123,7 @@ contract Protocol is ChainlinkClient {
 		) {
 			uint256 amount = matchWinnerData[match_id].matchPrizePool;
 			payable(msg.sender).transfer(amount);
+			total_scores_players = 0;
 
 			emit rewardsClaimed(match_id, amount);
 		}
