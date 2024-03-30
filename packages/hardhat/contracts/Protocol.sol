@@ -44,10 +44,11 @@ contract Protocol is ChainlinkClient {
 		string match_id,
 		string uuid,
 		address user_address,
+		uint256 betAmount,
 		int256 total_points,
 		bytes32 squadHash
 	);
-	event rewardsClaimed(string match_id, uint256 amount);
+	event rewardsClaimed(string match_id, address user_address, uint256 amount);
 	event test(bytes32 indexed requestId, int256 _total);
 
 	//functions
@@ -85,6 +86,7 @@ contract Protocol is ChainlinkClient {
 			match_id,
 			uuid,
 			msg.sender,
+			msg.value,
 			total_scores_players,
 			squadHash
 		);
@@ -125,7 +127,7 @@ contract Protocol is ChainlinkClient {
 			payable(msg.sender).transfer(amount);
 			total_scores_players = 0;
 
-			emit rewardsClaimed(match_id, amount);
+			emit rewardsClaimed(match_id, msg.sender, amount);
 		}
 	}
 }

@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   4002: {
     Protocol: {
-      address: "0x428D0A6e0eB291cba9952b5D83f0E4d59072e251",
+      address: "0x1FB594EeA44413B0df1F54d6C6F38e109C3c9ad3",
       abi: [
         {
           inputs: [],
@@ -76,6 +76,12 @@ const deployedContracts = {
             },
             {
               indexed: false,
+              internalType: "uint256",
+              name: "betAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
               internalType: "int256",
               name: "total_points",
               type: "int256",
@@ -98,6 +104,12 @@ const deployedContracts = {
               internalType: "string",
               name: "match_id",
               type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "user_address",
+              type: "address",
             },
             {
               indexed: false,
