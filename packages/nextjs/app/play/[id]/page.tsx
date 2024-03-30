@@ -7,6 +7,7 @@ import { NextPage } from "next";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { parseEther } from "viem";
+import { encodeAbiParameters, encodePacked, hexToBytes, keccak256, parseAbiParameters } from "viem";
 import { useAccount } from "wagmi";
 import {
   ArrowRightCircleIcon,
@@ -21,12 +22,6 @@ import { EtherInput } from "~~/components/scaffold-eth";
 import players from "~~/data/match_players.json";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import "~~/styles/test1.css";
-import {  keccak256,
-  encodePacked,
-  encodeAbiParameters,
-  parseAbiParameters,
-  hexToBytes, } from "viem";
-
 
 const AnonAadhaarProvider = dynamic(() => import("@anon-aadhaar/react").then(module => module.AnonAadhaarProvider), {
   ssr: false,
@@ -72,41 +67,35 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
   });
 
   function computeMerkleRoot(points) {
-    const hashedValues = points.map((point) =>
-      keccak256(`0x${point.toString(16)}`)
-    );
-    console.log(hashedValues);
-  
+    const hashedValues = points.map(point => keccak256(`0x${point.toString(16)}`));
+    // console.log(hashedValues);
+
     function recursiveMerkleRoot(hashes) {
       if (hashes.length === 1) {
         return hashes[0];
       }
-  
+
       const nextLevelHashes = [];
-  
+
       // Combine adjacent hashes and hash them together
       for (let i = 0; i < hashes.length; i += 2) {
         const left = hashes[i];
         const right = i + 1 < hashes.length ? hashes[i + 1] : "0x";
-        const combinedHash = keccak256(
-          encodePacked(["bytes32", "bytes32"], [left, right])
-        );
+        const combinedHash = keccak256(encodePacked(["bytes32", "bytes32"], [left, right]));
         nextLevelHashes.push(combinedHash);
       }
-  
+
       // Recur for the next level
       return recursiveMerkleRoot(nextLevelHashes);
     }
-  
+
     // Start the recursive computation
     return recursiveMerkleRoot(hashedValues);
   }
-  
+
   function padArrayWithZeros(array) {
     const paddedLength = Math.pow(2, Math.ceil(Math.log2(array.length)));
-    return array.concat(
-      Array.from({ length: paddedLength - array.length }, () => 0)
-    );
+    return array.concat(Array.from({ length: paddedLength - array.length }, () => 0));
   }
 
   useEffect(() => {
@@ -140,28 +129,27 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
   };
 
   const registerAndBet = async () => {
-    // const api_url = `https://puce-smoggy-clam.cyclic.app/scores/${params.id.split("M")[1]}/${savedPlayers
-    //   .map(savedPlayer => savedPlayer.player_id)
-    //   .join("P")}`;
-    // await writeAsync1({ args: [api_url] });
-    // await writeAsync2({ args: [], value: parseEther(betAmount) });
-    // localStorage.setItem("step_" + params.id, 4);
-    // setStep(4);
-    
-    console.log(savedPlayers.map(savedPlayer => savedPlayer.player_id));
+    const api_url = `https://puce-smoggy-clam.cyclic.app/scores/${params.id.split("M")[1]}/${savedPlayers
+      .map(savedPlayer => savedPlayer.player_id)
+      .join("P")}`;
+    await writeAsync1({ args: [api_url] });
+
+    // console.log(savedPlayers.map(savedPlayer => savedPlayer.player_id));
     var merkleRoot = computeMerkleRoot(padArrayWithZeros(savedPlayers.map(savedPlayer => savedPlayer.player_id)));
-    console.log(merkleRoot);
-    console.log(address);
+    // console.log(merkleRoot);
+    // console.log(address);
     var timeconst = keccak256(`0x${Date.now().toString(16)}`);
     localStorage.setItem("timestamp_" + params.id, timeconst);
-    const finalHash = keccak256(
-      encodePacked(["bytes20", "bytes32","bytes32"], [address, merkleRoot, timeconst])
-    );
-    console.log(timeconst)
-    console.log(finalHash)
-    
+    const finalHash = keccak256(encodePacked(["bytes20", "bytes32", "bytes32"], [address, merkleRoot, timeconst]));
+    // console.log(timeconst);
+    // console.log(finalHash);
 
-  
+    await writeAsync2({
+      args: [params.id.split("M")[1], params.id + address?.toString(), address, finalHash],
+      value: parseEther(betAmount),
+    });
+    localStorage.setItem("step_" + params.id, 4);
+    setStep(4);
   };
 
   if (isLoading) {
