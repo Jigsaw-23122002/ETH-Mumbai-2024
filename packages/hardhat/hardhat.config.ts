@@ -130,6 +130,12 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.publicgoods.network",
       accounts: [deployerPrivateKey],
     },
+    fantomTestnet: {
+      url: "https://fantom-testnet.drpc.org",
+      accounts: [deployerPrivateKey],
+      saveDeployments: true,
+      live: true,
+    },
   },
   // configuration for harhdat-verify plugin
   etherscan: {

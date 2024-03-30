@@ -12,11 +12,11 @@ contract Protocol is ChainlinkClient {
 
 	constructor() {
 		// setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);
-		_setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD);
+		_setChainlinkOracle(0xCC79157eb46F5624204f47AB42b3906cAA40eaB7);
 
-		_setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);
+		_setChainlinkToken(0xfaFedb041c0DD4fA2Dc0d87a6B0979Ee6FA7af5F);
 
-		oracle = 0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD;
+		oracle = 0xCC79157eb46F5624204f47AB42b3906cAA40eaB7;
 
 		jobId = "fcf4140d696d44b687012232948bdd5d";
 		fee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)

@@ -5,6 +5,307 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
+  4002: {
+    Protocol: {
+      address: "0xb4Fc6Ed9561558B36a012E70bfe6d03Ae81353CF",
+      abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "id",
+              type: "bytes32",
+            },
+          ],
+          name: "ChainlinkCancelled",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "id",
+              type: "bytes32",
+            },
+          ],
+          name: "ChainlinkFulfilled",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "id",
+              type: "bytes32",
+            },
+          ],
+          name: "ChainlinkRequested",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "string",
+              name: "match_id",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "uuid",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "user_address",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "int256",
+              name: "total_points",
+              type: "int256",
+            },
+            {
+              indexed: false,
+              internalType: "bytes32",
+              name: "squadHash",
+              type: "bytes32",
+            },
+          ],
+          name: "SquadRegistered",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "string",
+              name: "match_id",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "rewardsClaimed",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "requestId",
+              type: "bytes32",
+            },
+            {
+              indexed: false,
+              internalType: "int256",
+              name: "_total",
+              type: "int256",
+            },
+          ],
+          name: "test",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "match_id",
+              type: "string",
+            },
+            {
+              internalType: "bytes32",
+              name: "squadHash",
+              type: "bytes32",
+            },
+          ],
+          name: "claimRewards",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "_requestId",
+              type: "bytes32",
+            },
+            {
+              internalType: "int256",
+              name: "_total_scores_players",
+              type: "int256",
+            },
+          ],
+          name: "fulfill",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "uuid",
+              type: "string",
+            },
+          ],
+          name: "getMatchUserSquad",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "user_address",
+                  type: "address",
+                },
+                {
+                  internalType: "int256",
+                  name: "total_points",
+                  type: "int256",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "squadHash",
+                  type: "bytes32",
+                },
+              ],
+              internalType: "struct Protocol.MatchUserSquad",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "match_id",
+              type: "string",
+            },
+          ],
+          name: "isWinner",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          name: "matchWinnerData",
+          outputs: [
+            {
+              internalType: "int256",
+              name: "matchWinnerPoints",
+              type: "int256",
+            },
+            {
+              internalType: "address",
+              name: "matchWinner",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "matchPrizePool",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes32",
+              name: "squadHash",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "api",
+              type: "string",
+            },
+          ],
+          name: "submitOracle",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "match_id",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "uuid",
+              type: "string",
+            },
+            {
+              internalType: "bytes32",
+              name: "squadHash",
+              type: "bytes32",
+            },
+          ],
+          name: "submitSquad",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "total_scores_players",
+          outputs: [
+            {
+              internalType: "int256",
+              name: "",
+              type: "int256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
   11155111: {
     Protocol: {
       address: "0x4aBfD8DA327FDb5CE08D7AAbD30709236B3988fA",
