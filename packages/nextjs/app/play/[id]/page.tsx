@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import circuit from "../../../../circuits/target/demo_circuit.json";
 import { BarretenbergBackend } from "@noir-lang/backend_barretenberg";
 import { Noir } from "@noir-lang/noir_js";
 import { NextPage } from "next";
@@ -19,6 +18,7 @@ import {
   LockClosedIcon,
   TrophyIcon,
 } from "@heroicons/react/24/outline";
+import circuit from "~~/circuits/target/demo_circuit.json";
 import Player from "~~/components/Player";
 import { Spinner } from "~~/components/Spinner";
 import { EtherInput } from "~~/components/scaffold-eth";
