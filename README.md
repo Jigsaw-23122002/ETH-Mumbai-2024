@@ -16,13 +16,14 @@
 
 ![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
 
-## Requirements
+## Challenges faced by current platform
 
+1. Dream11, a leading fantasy sports platform, has come under fire for multiple instances of leaked player team data before matches. These breaches have raised significant concerns regarding the platform's handling of user privacy. The repeated occurrence of such incidents highlights the pressing need for stronger data protection measures and transparency protocols within the realm of fantasy sports.
+
+2. Dream11 is embroiled in legal disputes due to the pervasive use of bots, which distort fair competition by artificially inflating betting pools. These automated entities erode the integrity of the platform, necessitating urgent measures to curb their influence and uphold equitable gaming standards for all participants.
+
+3. Dream11's lack of transparency with its scoring system breeds distrust among players, who question the accuracy of leaderboards. Ensuring fairness and clarity is vital for the trust and satisfaction of fantasy sports enthusiasts.
 Before you begin, you need to install the following tools:
-
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
 
 ## Quickstart
 
