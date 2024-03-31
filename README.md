@@ -23,7 +23,6 @@
 2. Dream11 is embroiled in legal disputes due to the pervasive use of bots, which distort fair competition by artificially inflating betting pools. These automated entities erode the integrity of the platform, necessitating urgent measures to curb their influence and uphold equitable gaming standards for all participants.
 
 3. Dream11's lack of transparency with its scoring system breeds distrust among players, who question the accuracy of leaderboards. Ensuring fairness and clarity is vital for the trust and satisfaction of fantasy sports enthusiasts.
-Before you begin, you need to install the following tools:
 
 ## Our approach
 
