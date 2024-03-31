@@ -55,11 +55,21 @@ yarn
 yarn start
 ```
 
-## Documentation
+## Deployed contracts
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
+1. Circuit contract
+- Cardona test network
+   - address - 0x272b0f6C42932bdb6DF920d2eB97910cD63B31d5
+   - explorer - https://cardona-zkevm.polygonscan.com/address/0x272b0f6c42932bdb6df920d2eb97910cd63b31d5
+- OP Avail sepolia test network
+   - address - 0x272b0f6C42932bdb6DF920d2eB97910cD63B31d5
+   - explorer - https://op-avail-sepolia-explorer.alt.technology/address/0x272b0f6C42932bdb6DF920d2eB97910cD63B31d5
+- xLumio test network
+   - address - 0x364B32f84E5388f2299641AaAD6aBEc8a65c4D74
+   - explorer - https://explorer.testnet.lumio.io/address/0x364B32f84E5388f2299641AaAD6aBEc8a65c4D74
+2. Protocol contract
+   - address - 0x428D0A6e0eB291cba9952b5D83f0E4d59072e251
+   - explorer - https://testnet.ftmscan.com/address/0x428d0a6e0eb291cba9952b5d83f0e4d59072e251
 
 ## Contributing to Scaffold-ETH 2
 
