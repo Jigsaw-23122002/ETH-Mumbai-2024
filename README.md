@@ -1,4 +1,4 @@
-# 🏗 FairPlayXI
+# FairPlayXI
 
 <h4 align="center">
   <a href="![WhatsApp Image 2024-03-27 at 00 27 56_413b8ef4](https://github.com/Jigsaw-23122002/ETH-Mumbai-2024/assets/90565934/ac8a84b4-34a9-439d-9a01-949cbc43669a)
