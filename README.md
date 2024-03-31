@@ -52,7 +52,7 @@ Through this seamless combination of cutting-edge technologies, our protocol del
      - address - 0x428D0A6e0eB291cba9952b5D83f0E4d59072e251
      - explorer - https://testnet.ftmscan.com/address/0x428d0a6e0eb291cba9952b5d83f0e4d59072e251
 
-## Quickstart
+## Local Setup
 
 To get FairPlayXI run locally, follow the steps below:
 
