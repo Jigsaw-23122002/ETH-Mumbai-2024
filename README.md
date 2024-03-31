@@ -49,7 +49,7 @@ Through this seamless combination of cutting-edge technologies, our protocol del
      - address - 0x364B32f84E5388f2299641AaAD6aBEc8a65c4D74
      - explorer - https://explorer.testnet.lumio.io/address/0x364B32f84E5388f2299641AaAD6aBEc8a65c4D74
 2. FairPlayXI Protocol contract
-  - Fantom
+  - Fantom test network
      - address - 0x428D0A6e0eB291cba9952b5D83f0E4d59072e251
      - explorer - https://testnet.ftmscan.com/address/0x428d0a6e0eb291cba9952b5d83f0e4d59072e251
 
