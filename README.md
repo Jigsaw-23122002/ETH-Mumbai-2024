@@ -16,7 +16,7 @@
 
 ![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
 
-## Challenges faced by current platform
+## Limitations
 
 1. Dream11, a leading fantasy sports platform, has come under fire for multiple instances of leaked player team data before matches. These breaches have raised significant concerns regarding the platform's handling of user privacy. The repeated occurrence of such incidents highlights the pressing need for stronger data protection measures and transparency protocols within the realm of fantasy sports.
 
