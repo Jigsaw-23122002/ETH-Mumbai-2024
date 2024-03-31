@@ -1,4 +1,4 @@
-![Screenshot (1461)](https://github.com/Jigsaw-23122002/ETH-Mumbai-2024/assets/90565934/e9a66bb3-0227-4b37-bf0d-acabd4401a5f)# FairPlayXI
+# FairPlayXI
 
 <h4 align="center">
   <a href="https://fairplayxi-sarvagnya.vercel.app?_vercel_share=7XUHmYBZNDSloyWxg1fHNNumRZ4w0JVq">Deployed App</a>
