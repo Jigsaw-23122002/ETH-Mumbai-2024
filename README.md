@@ -27,7 +27,7 @@ Before you begin, you need to install the following tools:
 
 ## Our approach
 
-1. Our innovative approach involves generating a Merkle Root of each player's meticulously crafted squad of 11 players, arranged in a specific order, before the commencement of the match.
+1. Our innovative approach involves generating a Merkle Root of each user's meticulously crafted squad of 11 players, arranged in a specific order, before the commencement of the match.
 2. The Merkle Root generated is then combined with the user's address and timestamp, forming a unique dataset.
 3. To ensure anonymity and resist Sybil attacks, this dataset is encrypted using Anon Aadhaar Proof and securely transmitted to our contract for registration. Once registered, any attempt to modify the squad becomes evident, as any alteration would lead to a change in the squad hash. Additionally, the squad remains confidential as the hash assigned to each user is distinct, even if multiple users generate identical squads simultaneously.
 4. Following the match's conclusion, before computing player points, our system employs a Zero-Knowledge (ZK) circuit crafted using the sophisticated Noir ZK DSL on Polygon's zkEVM Cardona Network to validate the squad's integrity.
