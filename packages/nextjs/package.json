@@ -17,6 +17,8 @@
     "@anon-aadhaar/react": "^2.0.2",
     "@ethersproject/providers": "^5.7.2",
     "@heroicons/react": "^2.0.11",
+    "@noir-lang/backend_barretenberg": "0.17.0",
+    "@noir-lang/noir_js": "0.17.0",
     "@rainbow-me/rainbowkit": "1.3.5",
     "@uniswap/sdk-core": "^4.0.1",
     "@uniswap/v2-sdk": "^3.0.1",

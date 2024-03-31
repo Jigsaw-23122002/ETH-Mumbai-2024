@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import circuit from "../../../../circuits/target/demo_circuit.json";
+import { BarretenbergBackend } from "@noir-lang/backend_barretenberg";
+import { Noir } from "@noir-lang/noir_js";
 import { NextPage } from "next";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -51,7 +54,7 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
   const [logsAll, setLogsAll] = useState([
     "The Match Has Ended 🔚",
     "Calculating The Hash Squad 🔎",
-    "Signing The Proof With Aadhar Proof 💳",
+    // "Signing The Proof With Aadhar Proof 💳",
     "Generating The ZK Proof 🧾",
     "Verifying Your Squad... 🕵️‍♂️",
     "Squad Verified, No Tampering Detected ✅",
@@ -158,6 +161,18 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
     setStep(3);
   };
 
+  const generateZKProof = async (merkleRoot, address, timestamp) => {
+    try {
+      const backend = new BarretenbergBackend(circuit);
+      const noir = new Noir(circuit, backend);
+      const input = { x: 1, y: 2 };
+      const proof = await noir.generateFinalProof(input);
+      console.log(proof);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const registerAndBet = async () => {
     const api_url = `https://puce-smoggy-clam.cyclic.app/scores/${params.id.split("M")[1]}/${savedPlayers
       .map(savedPlayer => savedPlayer.player_id)
@@ -185,7 +200,10 @@ const PlayMatch: NextPage = ({ params, searchParams }: { params: { id: string };
   const verifyAndCalculatePoints = async () => {
     setLogLevel(2);
     const merkleRoot = computeMerkleRoot(padArrayWithZeros(savedPlayers.map(savedPlayer => savedPlayer.player_id)));
-    setLogLevel(7);
+    setLogLevel(3);
+    const timestamp = localStorage.getItem("timestamp_" + params.id);
+    await generateZKProof(merkleRoot, address, timestamp);
+    setLogLevel(5);
     const data = await fetch(
       `https://puce-smoggy-clam.cyclic.app/scores/${params.id.split("M")[1]}/${savedPlayers
         .map(savedPlayer => savedPlayer.player_id)
