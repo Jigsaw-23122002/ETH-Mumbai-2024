@@ -1,4 +1,4 @@
-# FairPlayXI
+# ![WhatsApp Image 2024-03-27 at 00 27 56_413b8ef4](https://github.com/Jigsaw-23122002/ETH-Mumbai-2024/assets/90565934/3c36eecf-868d-4e32-a6e7-910811faacf5) FairPlayXI
 
 <h4 align="center">
   <a href="https://fairplayxi-sarvagnya.vercel.app?_vercel_share=7XUHmYBZNDSloyWxg1fHNNumRZ4w0JVq">Deployed App</a>
