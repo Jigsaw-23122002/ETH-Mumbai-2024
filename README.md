@@ -36,7 +36,7 @@ Before you begin, you need to install the following tools:
 
 Through this seamless combination of cutting-edge technologies, our protocol delivers a secure, fair, and transparent fantasy sports experience, setting a new standard for the industry.
 
-## Deployed contracts
+## Deployed Contracts
 
 1. ZK Circuit Verifier contract
   - Cardona test network
