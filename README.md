@@ -12,6 +12,9 @@
 
 ![Screenshot (1463)](https://github.com/Jigsaw-23122002/ETH-Mumbai-2024/assets/90565934/50ce5692-7d48-4e18-ba9a-80ccc2274db6)
 
+![WhatsApp Image 2024-03-31 at 08 38 02_17f8fe9c](https://github.com/Jigsaw-23122002/ETH-Mumbai-2024/assets/90565934/b2762290-97f6-412b-8302-147eb5e3e630)
+
+
 ## Limitations
 
 1. Dream11, a leading fantasy sports platform, has come under fire for multiple instances of leaked player team data before matches. These breaches have raised significant concerns regarding the platform's handling of user privacy. The repeated occurrence of such incidents highlights the pressing need for stronger data protection measures and transparency protocols within the realm of fantasy sports.
