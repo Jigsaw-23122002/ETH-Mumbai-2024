@@ -1,8 +1,7 @@
 # FairPlayXI
 
 <h4 align="center">
-  <a href="![WhatsApp Image 2024-03-27 at 00 27 56_413b8ef4](https://github.com/Jigsaw-23122002/ETH-Mumbai-2024/assets/90565934/ac8a84b4-34a9-439d-9a01-949cbc43669a)
-">Deployed App</a>
+  <a href="https://fairplayxi-sarvagnya.vercel.app?_vercel_share=7XUHmYBZNDSloyWxg1fHNNumRZ4w0JVq">Deployed App</a>
 </h4>
 
 🧪 FairPlayXI is a decentralized and sybil-resistant protocol tailored for fantasy sports enthusiasts. With a strong emphasis on privacy. FairPlayXI aims to revolutionize the realm of fantasy sports, offering an on-chain platform similar to Dream11, specifically tailored for cricket enthusiasts.
