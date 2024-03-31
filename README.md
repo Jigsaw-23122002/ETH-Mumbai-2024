@@ -71,8 +71,8 @@ yarn
 yarn start
 ```
 
-## Contributing to Scaffold-ETH 2
+## Technologies Used
 
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+1. We've employed Scaffold-ETH-2 as our development toolkit, enabling seamless creation of our dApp. Our protocol contract is deployed on the fantom and also on OP Avail Sepolia testnet, while the circuit contract resides on Polygon's cardona test network for efficient zero-knowledge proof computations.
+2. Complementing our infrastructure, a subgraph provides comprehensive analytics and comparison dashboards, empowering users with real-time insights for informed decision-making.
+3. We've harnessed the power of the Noir language to craft our zero-knowledge proof (ZKP) circuits, ensuring robust and efficient verification processes within our protocol.
