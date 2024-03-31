@@ -10,8 +10,162 @@ import matches from "~~/data/matches.json";
 import "~~/styles/test1.css";
 
 const Analysis: NextPage = () => {
+  const [match, setMatch] = useState("");
+  const [ranklist, setRanklist] = useState([]);
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
+  const [u1matches, setU1matches] = useState(0);
+  const [u2matches, setU2matches] = useState(0);
+  const [u1wins, setU1wins] = useState(0);
+  const [u2wins, setU2wins] = useState(0);
+  const [u1bets, setU1bets] = useState(0);
+  const [u2bets, setU2bets] = useState(0);
+  const [u1rewards, setU1rewards] = useState(0);
+  const [u2rewards, setU2rewards] = useState(0);
+
+  const noOfMatches = async () => {
+    const query1 = JSON.stringify({
+      query: `
+          query MyQuery {
+          squadRegistereds(where: {user_address: "${address1}"}) {
+            betAmount
+          }
+        }
+    `,
+    });
+
+    const response1 = await fetch("https://api.studio.thegraph.com/query/41844/fairplay/version/latest", {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+      body: query1,
+    });
+
+    const response1Json = await response1.json();
+    console.log(response1Json);
+    setU1matches(response1Json.data.squadRegistereds.length);
+    setU1bets(
+      response1Json.data.squadRegistereds.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.betAmount,
+        0,
+      ),
+    );
+
+    const query2 = JSON.stringify({
+      query: `
+          query MyQuery {
+          squadRegistereds(where: {user_address: "${address2}"}) {
+            betAmount
+          }
+        }
+    `,
+    });
+
+    const response2 = await fetch("https://api.studio.thegraph.com/query/41844/fairplay/version/latest", {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+      body: query2,
+    });
+
+    const response2Json = await response2.json();
+    setU2matches(response2Json.data.squadRegistereds.length);
+    setU2bets(
+      response2Json.data.squadRegistereds.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.betAmount,
+        0,
+      ),
+    );
+  };
+
+  const noOfWins = async () => {
+    const query1 = JSON.stringify({
+      query: `
+          query MyQuery {
+          rewardsClaimeds(where: {user_address: "${address1}"}) {
+            amount
+          }
+        }
+    `,
+    });
+
+    const response1 = await fetch("https://api.studio.thegraph.com/query/41844/fairplay/version/latest", {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+      body: query1,
+    });
+
+    const response1Json = await response1.json();
+    setU1wins(response1Json.data.rewardsClaimeds.length);
+    setU1rewards(
+      response1Json.data.rewardsClaimeds.reduce((accumulator, currentValue) => accumulator + currentValue.amount, 0),
+    );
+
+    const query2 = JSON.stringify({
+      query: `
+          query MyQuery {
+          rewardsClaimeds(where: {user_address: "${address2}"}) {
+            amount
+          }
+        }
+    `,
+    });
+
+    const response2 = await fetch("https://api.studio.thegraph.com/query/41844/fairplay/version/latest", {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+      body: query2,
+    });
+
+    const response2Json = await response2.json();
+    setU2wins(response2Json.data.rewardsClaimeds.length);
+    setU2rewards(
+      response2Json.data.rewardsClaimeds.reduce((accumulator, currentValue) => accumulator + currentValue.amount, 0),
+    );
+  };
+
+  const leaderboardFetch = async id => {
+    // console.log(Number(id.split(" ")[1]));
+    const query = JSON.stringify({
+      query: `
+          query MyQuery {
+            squadRegistereds(
+              where: {match_id: "${Number(id.split(" ")[1])}"}
+              orderBy: total_points
+              orderDirection: desc
+            ) {
+              betAmount
+              total_points
+              squadHash
+              match_id
+              user_address
+            }
+          }
+    `,
+    });
+
+    const response = await fetch("https://api.studio.thegraph.com/query/41844/fairplay/version/latest", {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+      body: query,
+    });
+
+    const responseJson = await response.json();
+    setRanklist(responseJson.data.squadRegistereds);
+  };
+
+  const calculateStats = async () => {
+    await noOfMatches();
+    await noOfWins();
+  };
 
   return (
     <>
@@ -23,65 +177,56 @@ const Analysis: NextPage = () => {
               Check The Leaderboard For A Match
             </h2>
             <div className="text-center lg:text-left">
-              <select className="select select-accent w-full max-w-xs">
+              <select
+                className="select select-accent w-full max-w-xs"
+                value={match}
+                onChange={e => {
+                  setMatch(e.target.value);
+                  leaderboardFetch(e.target.value);
+                }}
+              >
                 <option disabled selected>
                   Select Match
                 </option>
                 {matches.map(match => (
-                  <option>{match.matchName}</option>
+                  <option key={match.matchName}>{match.matchName}</option>
                 ))}
               </select>
-            </div>
-            <div className="text-center lg:text-left">
-              <div id="select-match" className="btn btn-outline lg:self-start px-8 hover:opacity-100">
-                View Leaderboard
-                <Image src="/assets/ranking-featured-icon.svg" alt="rankings icons" width={20} height={20} />
-              </div>
             </div>
           </div>
           <div className="flex flex-col items-center">
             <div className="max-w-[400px] lg:max-w-none">
-              <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr>
-                      <th>Rank</th>
-                      <th>Address/ENS</th>
-                      <th>Points</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th>2</th>
-                      <td>
-                        <Address address="0x34aA3F359A9D614239015126635CE7732c18fDF2" />
-                      </td>
-                      <td>10</td>
-                    </tr>
-                    <tr>
-                      <th>3</th>
-                      <td>
-                        <Address address="0x34aA3F359A9D614239015126635CE7732c18fDF3" />
-                      </td>
-                      <td>10</td>
-                    </tr>
-                    <tr>
-                      <th>1</th>
-                      <td>
-                        <Address address="0x34aA3F359A9D614239015126635CE7732c18fDF3" />
-                      </td>
-                      <td>10</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              {match && (
+                <div className="overflow-x-auto">
+                  <table className="table">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Address/ENS</th>
+                        <th>Points</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {ranklist.map((rank, i) => (
+                        <tr>
+                          <th>{i + 1}</th>
+                          <td>
+                            <Address address={rank.user_address} />
+                          </td>
+                          <td>{rank.total_points}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Feature Builds */}
+      {/* Feature Comparisons */}
       <div className="bg-base-300">
         <div className="container flex flex-col items-center justify-center max-w-[90%] lg:max-w-6xl mx-auto py-16 lg:py-28 lg:px-12 gap-6">
           <div className="gap-4 flex flex-col items-center">
@@ -92,6 +237,17 @@ const Analysis: NextPage = () => {
               Select 2 players and view a head-to-head showdown between the them. View competitive analysis between the
               players.
             </p>
+            <div className="text-center lg:text-left">
+              <button
+                id="compare-now"
+                className="btn btn-outline lg:self-start px-8 hover:opacity-100"
+                onClick={() => {
+                  calculateStats();
+                }}
+              >
+                Compare
+              </button>
+            </div>
           </div>
           {/* Card Container  */}
           <div className="flex gap-8 flex-wrap lg:flex-nowrap justify-center items-center mt-8">
@@ -100,13 +256,16 @@ const Analysis: NextPage = () => {
                 <AddressInput onChange={setAddress1} value={address1} placeholder="Input First Player's Address" />
                 <ul>
                   <li className="m-2">
-                    <span className="font-bold">Attribute 1</span>: Stat 1
+                    <span className="font-bold">No. Of Matches</span>: {u1matches}
                   </li>
                   <li className="m-2">
-                    <span className="font-bold">Attribute 1</span>: Stat 1
+                    <span className="font-bold">Total Bets Summed</span>: {u1bets}
                   </li>
                   <li className="m-2">
-                    <span className="font-bold">Attribute 1</span>: Stat 1
+                    <span className="font-bold">Total Wins</span>: {u1wins}
+                  </li>
+                  <li className="m-2">
+                    <span className="font-bold">Total Rewards Claimed</span>: {u1rewards}
                   </li>
                 </ul>
               </div>
@@ -117,13 +276,16 @@ const Analysis: NextPage = () => {
                 <AddressInput onChange={setAddress2} value={address2} placeholder="Input Second Player's Address" />
                 <ul>
                   <li className="m-2">
-                    <span className="font-bold">Attribute 1</span>: Stat 1
+                    <span className="font-bold">No. Of Matches</span>: {u2matches}
                   </li>
                   <li className="m-2">
-                    <span className="font-bold">Attribute 1</span>: Stat 1
+                    <span className="font-bold">Total Bets Summed</span>: {u2bets}
                   </li>
                   <li className="m-2">
-                    <span className="font-bold">Attribute 1</span>: Stat 1
+                    <span className="font-bold">Total Wins</span>: {u2wins}
+                  </li>
+                  <li className="m-2">
+                    <span className="font-bold">Total Rewards Claimed</span>: {u2rewards}
                   </li>
                 </ul>
               </div>
