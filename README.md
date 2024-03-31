@@ -4,7 +4,7 @@
   <a href="https://fairplayxi-sarvagnya.vercel.app?_vercel_share=7XUHmYBZNDSloyWxg1fHNNumRZ4w0JVq">Deployed App</a>
 </h4>
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+🧪 FairPlayXI is a decentralized and sybil-resistant protocol tailored for fantasy sports enthusiasts. With a strong emphasis on privacy, FairPlayXI aims to revolutionize the realm of fantasy sports, offering an on-chain platform similar to Dream11, specifically tailored for cricket enthusiasts.
 
 ⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
 
