@@ -32,6 +32,10 @@
 
 Through this seamless combination of cutting-edge technologies, our protocol delivers a secure, fair, and transparent fantasy sports experience, setting a new standard for the industry.
 
+## Subgraph Endpoint 
+
+- https://api.studio.thegraph.com/query/41844/fairplay/0.0.1
+
 ## Deployed Contracts
 
 1. ZK Circuit Verifier contract
