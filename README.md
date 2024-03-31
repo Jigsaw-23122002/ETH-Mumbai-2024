@@ -38,7 +38,7 @@ Through this seamless combination of cutting-edge technologies, our protocol del
 
 ## Deployed contracts
 
-1. Circuit contract
+1. ZK Circuit Verifier contract
   - Cardona test network
      - address - 0x272b0f6C42932bdb6DF920d2eB97910cD63B31d5
      - explorer - https://cardona-zkevm.polygonscan.com/address/0x272b0f6c42932bdb6df920d2eb97910cd63b31d5
