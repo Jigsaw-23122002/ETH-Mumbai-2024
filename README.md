@@ -59,7 +59,7 @@ FairPlayXI is a decentralized and sybil-resistant protocol tailored for fantasy 
 - [**FairPlayXI**](https://fairplayxi-sarvagnya.vercel.app/?_vercel_share=7XUHmYBZNDSloyWxg1fHNNumRZ4w0JVq) 🚀
 
 ### Assets
-- [GitHub Repo](https://github.com/toshan-luktuke/stock-market-analyser)
+- [GitHub Repo](https://github.com/Jigsaw-23122002/ETH-Mumbai-2024)
 - [Devfolio Submission](https://devfolio.co/projects/fairplayxi-b88f)
 - [Demo Video](https://youtu.be/7khPnTrDhCY)
 
