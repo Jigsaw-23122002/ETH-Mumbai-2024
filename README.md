@@ -67,7 +67,7 @@ FairPlayXI is a decentralized and sybil-resistant protocol tailored for fantasy 
 - [Hosted Subgraph Studio](https://api.studio.thegraph.com/query/41844/fairplay/0.0.1)
 
 ### Deployed Protocol Contract
-- [Phantom Testnet](https://testnet.ftmscan.com/address/0x428d0a6e0eb291cba9952b5d83f0e4d59072e251)
+- [Fantom Testnet](https://testnet.ftmscan.com/address/0x428d0a6e0eb291cba9952b5d83f0e4d59072e251)
 
 ### Deployed ZK Circuit Verifier Contract
 - [Polygon Cardona zkEVM Testnet](https://cardona-zkevm.polygonscan.com/address/0x272b0f6c42932bdb6df920d2eb97910cd63b31d5)
